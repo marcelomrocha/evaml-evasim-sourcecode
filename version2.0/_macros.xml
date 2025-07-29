@@ -1,158 +1,888 @@
-<evaml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="eva_demo" xsi:noNamespaceSchemaLocation="xml_schema/robot-schema.xsd">
+<evaml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="jogo_perguntas_respostas_demo" xsi:noNamespaceSchemaLocation="evaml-schema/evaml_schema.xsd">
   <settings>
-    <voice tone="en-US_EmmaExpressive" />
+    <voice tone="pt-BR_IsabelaV3Voice" />
     <lightEffects mode="ON" />
     <audioEffects mode="ON" />
   </settings>
   <script>
-    
-    <light state="OFF" />
-    <evaEmotion emotion="NEUTRAL" />
-    <led animation="STOP" />
-    <motion head="CENTER" rightArm="POSITION 0" leftArm="POSITION 0" />
-    <talk>Hi every body!</talk>
-    <talk>My name is EVA.</talk>
-    <audio source="efx-blin2" block="TRUE" />
-    <talk>I am a social robot.</talk>
-    <wait duration="1500" />
-    <talk>I can be used in healthcare and educational applications</talk>
-    <audio source="efx-blin2" block="TRUE" />
-    <talk>Now I will initiate a test of all my capabilities</talk>
-
-
-    
-    <talk>I will start testing the smart bulb</talk>
-    <audio source="efx-display" block="FALSE" />
-    <light state="ON" color="WHITE" />
-    <wait duration="1000" />
-    <audio source="efx-display" block="FALSE" />
-    <light state="ON" color="BLUE" />
-    <wait duration="1000" />
-    <audio source="efx-display" block="FALSE" />
-    <light state="ON" color="GREEN" />
-    <wait duration="1000" />
-    <audio source="efx-display" block="FALSE" />
-    <light state="ON" color="RED" />
-    <wait duration="1000" />
-    <audio source="efx-display" block="FALSE" />
-    <light state="ON" color="YELLOW" />
-    <wait duration="1000" />
-
-
-    
-    <talk>I can express emotions using my gaze and I will test it now</talk>
-    <audio source="efx-blin2" block="FALSE" />
-    <evaEmotion emotion="HAPPY" />
-    <wait duration="2000" />
-    <audio source="efx-blin2" block="FALSE" />
-    <evaEmotion emotion="SAD" />
-    <wait duration="2000" />
-    <audio source="efx-blin2" block="FALSE" />
-    <evaEmotion emotion="ANGRY" />
-    <wait duration="2000" />
-    <audio source="efx-blin2" block="FALSE" />
-    <evaEmotion emotion="FEAR" />
-    <wait duration="2000" />
-    <audio source="efx-blin2" block="FALSE" />
-    <evaEmotion emotion="SURPRISE" />
-    <wait duration="2000" />
-    <audio source="efx-blin2" block="FALSE" />
-    <evaEmotion emotion="DISGUST" />
-    <wait duration="2000" />
-    <audio source="efx-blin2" block="FALSE" />
-    <evaEmotion emotion="INLOVE" />
-    <wait duration="2000" />
-
-    
-    
-    <evaEmotion emotion="NEUTRAL" />
-    <talk>Now, I will run some animations using the leds on my chest</talk>
-    <audio source="efx-robot" block="FALSE" />
-    <light state="ON" color="GREEN" />
-    <led animation="HAPPY" />
-    <wait duration="5000" />
-    <audio source="efx-robot" block="FALSE" />
-    <light state="ON" color="RED" />
-    <led animation="ANGRY" />
-    <wait duration="5000" />
-    <audio source="efx-robot" block="FALSE" />
-    <light state="ON" color="YELLOW" />
-    <led animation="SURPRISE" />
-    <wait duration="5000" />
-    <audio source="efx-robot" block="FALSE" />
-    <light state="ON" color="WHITE" />
-    <led animation="RAINBOW" />
-    <wait duration="5000" />
-
-    
-    <led animation="STOP" />
-    <talk>I have non verbal capabilities so I can move my head</talk>
-    <wait duration="1000" />
-    <talk>I can move up</talk>
-    <audio source="efx-robot-head" block="FALSE" />
-    <motion type="2UP" />
-    <wait duration="2000" />
-    <motion type="CENTER" />
-    <wait duration="2000" />
-    <talk>I can move down</talk>
-    <audio source="efx-robot-head" block="FALSE" />
-    <motion type="2DOWN" />
-    <wait duration="2000" />
-    <motion type="CENTER" />
-    <wait duration="2000" />
-    <talk>I can say no</talk>
-    <light state="ON" color="RED" />
-    <led animation="ANGRY" />
-    <evaEmotion emotion="ANGRY" />
-    <motion head="DOWN" />
-    <wait duration="1000" />
-    <motion type="NO" />
-    <wait duration="4000" />
-    <talk>and I can say yes</talk>
-    <led animation="HAPPY" />
-    <light state="ON" color="GREEN" />
-    <evaEmotion emotion="HAPPY" />
-    <motion type="2YES" />
-    <wait duration="4000" />
-    <evaEmotion emotion="NEUTRAL" />
-    <motion head="CENTER" />
-    <light state="ON" color="WHITE" />
-    
-    
-    <talk>I can move my right arm</talk>
-    <audio source="efx-robot-arm" block="FALSE" />
     <motion rightArm="POSITION 3" />
-    <wait duration="2000" />
-    <talk>I can move my left arm</talk>
-    <audio source="efx-robot-arm" block="FALSE" />
-    <motion leftArm="POSITION 2" />
-    <wait duration="2000" />
-    <talk>and I can shake my arms</talk>
-    <audio source="song-samba-loop" block="FALSE" />
-    <motion leftArm="SHAKE2" rightArm="SHAKE2" />
-    <wait duration="6000" />
-    <motion rightArm="POSITION 0" leftArm="POSITION 0" />
-
-    
-    <talk>I can also play sounds</talk>
-    <audio source="efx-blin" block="TRUE" />
-    <talk>I can play some good music too</talk>
-    <audio source="song-rude-magic" block="FALSE" />
-    <led animation="SURPRISE" />
-    <motion head="RIGHT_UP2" rightArm="POSITION 3" leftArm="POSITION 0" />
-    <evaEmotion emotion="HAPPY" />
-    <wait duration="7000" />
-    <motion head="LEFT_UP2" rightArm="POSITION 0" leftArm="POSITION 3" />
-    <wait duration="7000" />
-    <motion head="CENTER" rightArm="POSITION 0" leftArm="POSITION 0" />
-
-    
-    <led animation="STOP" />
-    <motion head="CENTER" />
-    
-    <talk>That is alll folks</talk>
-    <wait duration="1000" />
-    <talk>Good bye!</talk>
     <light state="OFF" />
+    <evaEmotion emotion="HAPPY" />
+    <audio source="efx-blin" block="TRUE" />
+    <motion rightArm="SHAKE2" />
+    <talk>Olá, eu sou o robô EVA! Apresentador do jogo de perguntas e respostas</talk>
+    <light state="ON" color="WHITE" />
+    <audio source="efx-fanfare" block="TRUE" />
+    <talk>Nesse jogo você testa seu conhecimento sobre ciências</talk>
+    <light state="OFF" />
+    <evaEmotion emotion="NEUTRAL" />
+    <motion rightArm="POSITION 0" />
+    <talk>Para demonstrar o funcionamento básico do jogo, vou fazer 3 perguntas, cada uma com cinco alternativas, sendo somente uma delas a resposta correta</talk>
+    <talk>Você pode responder utilizando os seguintes padrões de resposta: alternativa B, resposta B, letra B e opção B.</talk>
+    <talk>Você pode obter ajuda dizendo as palavras dica ou remover alternativas, antes de escolher uma resposta.</talk>
+    <audio source="efx-blin2" block="TRUE" />
+    <talk>Antes de começar a jogar, eu gostaria de saber o seu nome</talk>
+    <listen var="nome" />
+    <talk>Prazer em te conhecer, #nome!</talk>
+    <talk>Muito bem, vamos para a primeira pergunta!</talk>
+    <counter var="dica" op="=" value="0" />
+    <counter var="alternativa" op="=" value="0" />
+    <counter var="ajuda" op="=" value="2" />
+    <counter var="pontos" op="=" value="0" />
+    <counter var="acertos1" op="=" value="0" />
+      <counter var="bool11" op="=" value="0" />
+      <counter var="bool12" op="=" value="0" />
+      <counter var="bool13" op="=" value="0" />
+      <light state="OFF" id="loop1" />
+          <random min="1" max="3" id="rand1" />
+          <switch var="$">
+            <case op="exact" value="1">
+              <switch var="bool11">
+                <case op="exact" value="0">
+                  <mqtt topic="showmilhao/atualiza">
+                  #nome|#pontos|#ajuda|Qual é o órgão responsável por bombear o sangue no corpo humano?|A) Pulmão|B) Fígado|C) Coração|D) Estômago|E) Rim
+                  </mqtt>
+                  <light state="ON" color="BLUE" />
+                  <audio source="efx-suspense" block="TRUE" />
+                  
+                  <mqtt topic="showmilhao/ajuda"> </mqtt>
+
+                  <talk>Qual é o órgão responsável por bombear o sangue no corpo humano?</talk>
+                  <talk>A, Pulmão</talk>
+                  <talk>B, Fígado</talk>
+                  <talk>C, Coração</talk>
+                  <talk>D, Estômago</talk>
+                  <talk>É, Rim</talk>
+                  <talk>Qual é a resposta?</talk>
+                  <listen id="list11" />
+                  <switch var="$">
+                    <case op="contain" value="remove">
+                       <switch var="alternativa">
+                        <case op="ne" value="1">
+                        <counter var="alternativa" op="+" value="1" />
+                        <counter var="ajuda" op="-" value="1" />
+                        <mqtt topic="showmilhao/atualiza">
+                        #nome|#pontos|#ajuda|Qual é o órgão responsável por bombear o sangue no corpo humano?|A) Pulmão |B) |C) Coração|D) |E)Rim
+                        </mqtt>
+                        <talk>Qual é o órgão responsável por bombear o sangue no corpo humano?</talk>
+                        <talk>A, Pulmão</talk>
+                        <talk>C, Coração</talk>
+                        <talk>É, Rim</talk>
+                        <talk>Qual é a resposta?</talk>
+                        <goto target="list11" />
+                        </case>
+                        <default>
+                          <talk>Você não possui mais ajudas desse tipo, por favor diga a resposta ou tente outra ajuda</talk>
+                          <goto target="list11" />
+                        </default>
+                        </switch>
+                    </case>
+                    <case op="contain" value="dica">
+                          <switch var="dica">
+                          <case op="ne" value="1">
+                          <counter var="dica" op="+" value="1" />
+                          <counter var="ajuda" op="-" value="1" />
+                          <mqtt topic="showmilhao/ajuda">Fica no peito e bate sem parar.</mqtt>
+                          <talk>Fica no peito e bate sem parar.</talk>
+                          <talk>Qual é a resposta?</talk>
+                          <goto target="list11" />
+                          </case>
+                          <default>
+                            <talk>Você não possui mais ajudas desse tipo, por favor diga a resposta ou tente outra ajuda</talk>
+                            <goto target="list11" />
+                          </default>
+                          </switch>
+                    </case>
+                    <case op="contain" value="opção a">
+                      <mqtt topic="showmilhao/resposta">C|A</mqtt>
+                      <evaEmotion emotion="SURPRISE" />
+                      <talk>Resposta Errada!</talk>
+                      <stop />
+                    </case>
+                    <case op="contain" value="letra a">
+                      <mqtt topic="showmilhao/resposta">C|A</mqtt>
+                      <evaEmotion emotion="SURPRISE" />
+                      <talk>Resposta Errada!</talk>
+                      <stop />
+                    </case>
+                    <case op="contain" value="alternativa a">
+                      <mqtt topic="showmilhao/resposta">C|A</mqtt>
+                      <evaEmotion emotion="SURPRISE" />
+                      <talk>Resposta Errada!</talk>
+                      <stop />
+                    </case>
+                    <case op="contain" value="resposta a">
+                      <mqtt topic="showmilhao/resposta">C|A</mqtt>
+                      <evaEmotion emotion="SURPRISE" />
+                      <talk>Resposta Errada!</talk>
+                      <stop />
+                    </case>
+                    <case op="contain" value="opção b">
+                      <mqtt topic="showmilhao/resposta">C|B</mqtt>
+                      <evaEmotion emotion="SURPRISE" />
+                      <talk>Resposta Errada!</talk>
+                      <stop />
+                    </case>
+                    <case op="contain" value="letra b">
+                      <mqtt topic="showmilhao/resposta">C|B</mqtt>
+                      <evaEmotion emotion="SURPRISE" />
+                      <talk>Resposta Errada!</talk>
+                      <stop />
+                    </case>
+                    <case op="contain" value="alternativa b">
+                      <mqtt topic="showmilhao/resposta">C|B</mqtt>
+                      <evaEmotion emotion="SURPRISE" />
+                      <talk>Resposta Errada!</talk>
+                      <stop />
+                    </case>
+                    <case op="contain" value="resposta b">
+                      <mqtt topic="showmilhao/resposta">C|B</mqtt>
+                      <evaEmotion emotion="SURPRISE" />
+                      <talk>Resposta Errada!</talk>
+                      <stop />
+                    </case>
+                    <case op="contain" value="opção c">
+                      <mqtt topic="showmilhao/resposta">C</mqtt>
+                      <evaEmotion emotion="HAPPY" />
+                      <motion head="2YES" />
+                      <light state="ON" color="GREEN" />
+                      <motion head="2YES" />
+                      <light state="ON" color="GREEN" />
+                      <audio source="efx-children-ehh" block="TRUE" />
+                      <talk>Resposta Certa!</talk>
+                      <wait duration="500" />
+                      <counter var="pontos" op="+" value="1" />
+                      <counter var="bool11" op="=" value="1" />
+                      <counter var="acertos1" op="+" value="1" />
+                      <switch var="acertos1">
+                        <case op="exact" value="3">
+                          <evaEmotion emotion="INLOVE" />
+                          <talk>Meus parabéns, #nome! Você concluiu a primeira rodada.</talk>
+                          <talk>Acertou as perguntas e com um total de #pontos pontos, avançou para a segunda rodada.</talk>
+                          <wait duration="2000" />
+                          <evaEmotion emotion="NEUTRAL" />
+                          <goto target="segundaRodada" />
+                        </case>
+                        <default>
+                          <talk>Vamos para a próxima pergunta.</talk>
+                          <wait duration="1000" />
+                          <evaEmotion emotion="NEUTRAL" />
+                          <goto target="loop1" />
+                        </default>
+                      </switch>
+                    </case>
+                    <case op="contain" value="letra c">
+                      <mqtt topic="showmilhao/resposta">C</mqtt>
+                      <evaEmotion emotion="HAPPY" />
+                      <motion head="2YES" />
+                      <light state="ON" color="GREEN" />
+                      <audio source="efx-children-ehh" block="TRUE" />
+                      <talk>Resposta Certa!</talk>
+                      <wait duration="500" />
+                      <counter var="pontos" op="+" value="1" />
+                      <counter var="bool11" op="=" value="1" />
+                      <counter var="acertos1" op="+" value="1" />
+                      <switch var="acertos1">
+                        <case op="exact" value="3">
+                          <evaEmotion emotion="INLOVE" />
+                          <talk>Meus parabéns, #nome! Você concluiu a primeira rodada.</talk>
+                          <talk>Acertou as perguntas e com um total de #pontos pontos, avançou para a segunda rodada.</talk>
+                          <wait duration="2000" />
+                          <evaEmotion emotion="NEUTRAL" />
+                          <goto target="segundaRodada" />
+                        </case>
+                        <default>
+                          <talk>Vamos para a próxima pergunta.</talk>
+                          <wait duration="1000" />
+                          <evaEmotion emotion="NEUTRAL" />
+                          <goto target="loop1" />
+                        </default>
+                      </switch>
+                    </case>
+                    <case op="contain" value="alternativa c">
+                      <mqtt topic="showmilhao/resposta">C</mqtt>
+                      <evaEmotion emotion="HAPPY" />
+                      <motion head="2YES" />
+                      <light state="ON" color="GREEN" />
+                      <audio source="efx-children-ehh" block="TRUE" />
+                      <talk>Resposta Certa!</talk>
+                      <wait duration="500" />
+                      <counter var="pontos" op="+" value="1" />
+                      <counter var="bool11" op="=" value="1" />
+                      <counter var="acertos1" op="+" value="1" />
+                      <switch var="acertos1">
+                        <case op="exact" value="3">
+                          <evaEmotion emotion="INLOVE" />
+                          <talk>Meus parabéns, #nome! Você concluiu a primeira rodada.</talk>
+                          <talk>Acertou as perguntas e com um total de #pontos pontos, avançou para a segunda rodada.</talk>
+                          <wait duration="2000" />
+                          <evaEmotion emotion="NEUTRAL" />
+                          <goto target="segundaRodada" />
+                        </case>
+                        <default>
+                          <talk>Vamos para a próxima pergunta.</talk>
+                          <wait duration="1000" />
+                          <evaEmotion emotion="NEUTRAL" />
+                          <goto target="loop1" />
+                        </default>
+                      </switch>
+                    </case>
+                    <case op="contain" value="resposta c">
+                      <mqtt topic="showmilhao/resposta">C</mqtt>
+                      <evaEmotion emotion="HAPPY" />
+                      <motion head="2YES" />
+                      <light state="ON" color="GREEN" />
+                      <audio source="efx-children-ehh" block="TRUE" />
+                      <talk>Resposta Certa!</talk>
+                      <wait duration="500" />
+                      <counter var="pontos" op="+" value="1" />
+                      <counter var="bool11" op="=" value="1" />
+                      <counter var="acertos1" op="+" value="1" />
+                      <switch var="acertos1">
+                        <case op="exact" value="3">
+                          <evaEmotion emotion="INLOVE" />
+                          <talk>Meus parabéns, #nome! Você concluiu a primeira rodada.</talk>
+                          <talk>Acertou as perguntas e com um total de #pontos pontos, avançou para a segunda rodada.</talk>
+                          <wait duration="2000" />
+                          <evaEmotion emotion="NEUTRAL" />
+                          <goto target="segundaRodada" />
+                        </case>
+                        <default>
+                          <talk>Vamos para a próxima pergunta.</talk>
+                          <wait duration="1000" />
+                          <evaEmotion emotion="NEUTRAL" />
+                          <goto target="loop1" />
+                        </default>
+                      </switch>
+                    </case>
+                    <case op="contain" value="opção d">
+                      <mqtt topic="showmilhao/resposta">C|D</mqtt>
+                      <evaEmotion emotion="SURPRISE" />
+                      <talk>Resposta Errada!</talk>
+                      <stop />
+                    </case>
+                    <case op="contain" value="letra d">
+                      <mqtt topic="showmilhao/resposta">C|D</mqtt>
+                      <evaEmotion emotion="SURPRISE" />
+                      <talk>Resposta Errada!</talk>
+                      <stop />
+                    </case>
+                    <case op="contain" value="alternativa d">
+                      <mqtt topic="showmilhao/resposta">C|D</mqtt>
+                      <evaEmotion emotion="SURPRISE" />
+                      <talk>Resposta Errada!</talk>
+                      <stop />
+                    </case>
+                    <case op="contain" value="resposta d">
+                      <mqtt topic="showmilhao/resposta">C|D</mqtt>
+                      <evaEmotion emotion="SURPRISE" />
+                      <talk>Resposta Errada!</talk>
+                      <stop />
+                    </case>
+                    <case op="contain" value="opção e">
+                      <mqtt topic="showmilhao/resposta">C|E</mqtt>
+                      <evaEmotion emotion="SURPRISE" />
+                      <talk>Resposta Errada!</talk>
+                      <stop />
+                    </case>
+                    <case op="contain" value="letra e">
+                      <mqtt topic="showmilhao/resposta">C|E</mqtt>
+                      <evaEmotion emotion="SURPRISE" />
+                      <talk>Resposta Errada!</talk>
+                      <stop />
+                    </case>
+                    <case op="contain" value="alternativa e">
+                      <mqtt topic="showmilhao/resposta">C|E</mqtt>
+                      <evaEmotion emotion="SURPRISE" />
+                      <talk>Resposta Errada!</talk>
+                      <stop />
+                    </case>
+                    <case op="contain" value="resposta e">
+                      <mqtt topic="showmilhao/resposta">C|E</mqtt>
+                      <evaEmotion emotion="SURPRISE" />
+                      <talk>Resposta Errada!</talk>
+                      <stop />
+                    </case>
+                    <default>
+                      <talk>Alternativa inválida, por favor escolha entre as alternativas A, B, C, D, ou E.</talk>
+                      <goto target="list11" />
+                    </default>
+                  </switch>
+                </case>
+                <default>
+                  <goto target="rand1" />
+                </default>
+              </switch>
+            </case>
+            <case op="exact" value="2">
+              <switch var="bool12">
+                <case op="exact" value="0">
+                  <mqtt topic="showmilhao/atualiza">
+#nome|#pontos|#ajuda|Quantos planetas existem no nosso sistema solar?|A) 7 planetas|B) 9 planetas|C) 8 planetas|D) 10 planetas|E) 6 planetas
+</mqtt>
+<mqtt topic="showmilhao/ajuda"> </mqtt>
+<light state="ON" color="BLUE" />
+<audio source="efx-suspense" block="TRUE" />
+<talk>Quantos planetas existem, no nosso sistema solar?</talk>
+<talk>A, 7 planetas</talk>
+<talk>B, 9 planetas</talk>
+<talk>C, 8 planetas</talk>
+<talk>D, 10 planetas</talk>
+<talk>É, 6 planetas</talk>
+<talk>Qual é a resposta?</talk>
+                  <listen id="list12" />
+                        <switch var="$">
+                          <case op="contain" value="remove">
+                            <switch var="alternativa">
+                             <case op="ne" value="1">
+                             <counter var="alternativa" op="+" value="1" />
+                             <counter var="ajuda" op="-" value="1" />
+                             <mqtt topic="showmilhao/atualiza">
+                              #nome|#pontos|#ajuda|Quantos planetas existem no nosso sistema solar?|A) |B) |C) 8 planetas|D) 10 planetas|E) 6 planetas
+                             </mqtt>
+                             <talk>Quantos planetas existem, no nosso sistema solar?</talk>
+                             <talk>C, 8 planetas</talk>
+                             <talk>D, 10 planetas</talk>
+                             <talk>É, 6 planetas</talk>
+                             <talk>Qual é a resposta?</talk>
+                             <goto target="list12" />
+                             </case>
+                             <default>
+                               <talk>Você não possui mais ajudas desse tipo, por favor diga a resposta ou tente outra ajuda</talk>
+                               <goto target="list12" />
+                             </default>
+                             </switch>
+                         </case>
+                         <case op="contain" value="dica">
+                               <switch var="dica">
+                               <case op="ne" value="1">
+                               <counter var="dica" op="+" value="1" />
+                               <counter var="ajuda" op="-" value="1" />
+                               <mqtt topic="showmilhao/ajuda">Desde 2006, Plutão foi rebaixado e o número diminuiu em um.</mqtt>
+                               <talk>Desde 2006, Plutão foi rebaixado e o número diminuiu em um.</talk>
+                               <talk>Qual é a resposta?</talk>
+                               <goto target="list12" />
+                               </case>
+                               <default>
+                                 <talk>Você não possui mais ajudas desse tipo, por favor diga a resposta ou tente outra ajuda</talk>
+                                 <goto target="list12" />
+                               </default>
+                               </switch>
+                         </case>
+                          <case op="contain" value="opção a">
+                            <mqtt topic="showmilhao/resposta">C|A</mqtt>
+                            <evaEmotion emotion="SURPRISE" />
+                            <talk>Resposta Errada!</talk>
+                            <stop />
+                          </case>
+                          <case op="contain" value="letra a">
+                            <mqtt topic="showmilhao/resposta">C|A</mqtt>
+                            <evaEmotion emotion="SURPRISE" />
+                            <talk>Resposta Errada!</talk>
+                            <stop />
+                          </case>
+                          <case op="contain" value="alternativa a">
+                            <mqtt topic="showmilhao/resposta">C|A</mqtt>
+                            <evaEmotion emotion="SURPRISE" />
+                            <talk>Resposta Errada!</talk>
+                            <stop />
+                          </case>
+                          <case op="contain" value="resposta a">
+                            <mqtt topic="showmilhao/resposta">C|A</mqtt>
+                            <evaEmotion emotion="SURPRISE" />
+                            <talk>Resposta Errada!</talk>
+                            <stop />
+                          </case>
+                          <case op="contain" value="opção b">
+                            <mqtt topic="showmilhao/resposta">C|B</mqtt>
+                            <evaEmotion emotion="SURPRISE" />
+                            <talk>Resposta Errada!</talk>
+                            <stop />
+                          </case>
+                          <case op="contain" value="letra b">
+                            <mqtt topic="showmilhao/resposta">C|B</mqtt>
+                            <evaEmotion emotion="SURPRISE" />
+                            <talk>Resposta Errada!</talk>
+                            <stop />
+                          </case>
+                          <case op="contain" value="alternativa b">
+                            <mqtt topic="showmilhao/resposta">C|B</mqtt>
+                            <evaEmotion emotion="SURPRISE" />
+                            <talk>Resposta Errada!</talk>
+                            <stop />
+                          </case>
+                          <case op="contain" value="resposta b">
+                            <mqtt topic="showmilhao/resposta">C|B</mqtt>
+                            <evaEmotion emotion="SURPRISE" />
+                            <talk>Resposta Errada!</talk>
+                            <stop />
+                          </case>
+                          <case op="contain" value="opção c">
+                            <mqtt topic="showmilhao/resposta">C</mqtt>
+                      <evaEmotion emotion="HAPPY" />
+                      <motion head="2YES" />
+                      <light state="ON" color="GREEN" />
+                      <audio source="efx-children-ehh" block="TRUE" />
+                      <talk>Resposta Certa!</talk>
+                      <wait duration="500" />
+                      <counter var="pontos" op="+" value="1" />
+                      <counter var="bool12" op="=" value="1" />
+                      <counter var="acertos1" op="+" value="1" />
+                      <switch var="acertos1">
+                        <case op="exact" value="3">
+                          <evaEmotion emotion="INLOVE" />
+                          <talk>Meus parabéns, #nome! Você concluiu a primeira rodada.</talk>
+                          <talk>Acertou as perguntas e com um total de #pontos pontos, avançou para a segunda rodada.</talk>
+                          <wait duration="2000" />
+                          <evaEmotion emotion="NEUTRAL" />
+                          <goto target="segundaRodada" />
+                        </case>
+                        <default>
+                          <talk>Vamos para a próxima pergunta.</talk>
+                          <wait duration="1000" />
+                          <evaEmotion emotion="NEUTRAL" />
+                          <goto target="loop1" />
+                        </default>
+                      </switch>
+                          </case>
+                          <case op="contain" value="letra c">
+                            <mqtt topic="showmilhao/resposta">C</mqtt>
+                      <evaEmotion emotion="HAPPY" />
+                      <motion head="2YES" />
+                      <light state="ON" color="GREEN" />
+                      <audio source="efx-children-ehh" block="TRUE" />
+                      <talk>Resposta Certa!</talk>
+                      <wait duration="500" />
+                      <counter var="pontos" op="+" value="1" />
+                      <counter var="bool12" op="=" value="1" />
+                      <counter var="acertos1" op="+" value="1" />
+                      <switch var="acertos1">
+                        <case op="exact" value="3">
+                          <evaEmotion emotion="INLOVE" />
+                          <talk>Meus parabéns, #nome! Você concluiu a primeira rodada.</talk>
+                          <talk>Acertou as perguntas e com um total de #pontos pontos, avançou para a segunda rodada.</talk>
+                          <wait duration="2000" />
+                          <evaEmotion emotion="NEUTRAL" />
+                          <goto target="segundaRodada" />
+                        </case>
+                        <default>
+                          <talk>Vamos para a próxima pergunta.</talk>
+                          <wait duration="1000" />
+                          <evaEmotion emotion="NEUTRAL" />
+                          <goto target="loop1" />
+                        </default>
+                      </switch>
+                          </case>
+                          <case op="contain" value="alternativa c">
+                            <mqtt topic="showmilhao/resposta">C</mqtt>
+                      <evaEmotion emotion="HAPPY" />
+                      <motion head="2YES" />
+                      <light state="ON" color="GREEN" />
+                      <audio source="efx-children-ehh" block="TRUE" />
+                      <talk>Resposta Certa!</talk>
+                      <wait duration="500" />
+                      <counter var="pontos" op="+" value="1" />
+                      <counter var="bool12" op="=" value="1" />
+                      <counter var="acertos1" op="+" value="1" />
+                      <switch var="acertos1">
+                        <case op="exact" value="3">
+                          <evaEmotion emotion="INLOVE" />
+                          <talk>Meus parabéns, #nome! Você concluiu a primeira rodada.</talk>
+                          <talk>Acertou as perguntas e com um total de #pontos pontos, avançou para a segunda rodada.</talk>
+                          <wait duration="2000" />
+                          <evaEmotion emotion="NEUTRAL" />
+                          <goto target="segundaRodada" />
+                        </case>
+                        <default>
+                          <talk>Vamos para a próxima pergunta.</talk>
+                          <wait duration="1000" />
+                          <evaEmotion emotion="NEUTRAL" />
+                          <goto target="loop1" />
+                        </default>
+                      </switch>
+                          </case>
+                          <case op="contain" value="resposta c">
+                            <mqtt topic="showmilhao/resposta">C</mqtt>
+                      <evaEmotion emotion="HAPPY" />
+                      <motion head="2YES" />
+                      <light state="ON" color="GREEN" />
+                      <audio source="efx-children-ehh" block="TRUE" />
+                      <talk>Resposta Certa!</talk>
+                      <wait duration="500" />
+                      <counter var="pontos" op="+" value="1" />
+                      <counter var="bool12" op="=" value="1" />
+                      <counter var="acertos1" op="+" value="1" />
+                      <switch var="acertos1">
+                        <case op="exact" value="3">
+                          <evaEmotion emotion="INLOVE" />
+                          <talk>Meus parabéns, #nome! Você concluiu a primeira rodada.</talk>
+                          <talk>Acertou as perguntas e com um total de #pontos pontos, avançou para a segunda rodada.</talk>
+                          <wait duration="2000" />
+                          <evaEmotion emotion="NEUTRAL" />
+                          <goto target="segundaRodada" />
+                        </case>
+                        <default>
+                          <talk>Vamos para a próxima pergunta.</talk>
+                          <wait duration="1000" />
+                          <evaEmotion emotion="NEUTRAL" />
+                          <goto target="loop1" />
+                        </default>
+                      </switch>
+                          </case>
+                          <case op="contain" value="opção d">
+                            <mqtt topic="showmilhao/resposta">C|D</mqtt>
+                            <evaEmotion emotion="SURPRISE" />
+                            <talk>Resposta Errada!</talk>
+                            <stop />
+                          </case>
+                          <case op="contain" value="letra d">
+                            <mqtt topic="showmilhao/resposta">C|D</mqtt>
+                            <evaEmotion emotion="SURPRISE" />
+                            <talk>Resposta Errada!</talk>
+                            <stop />
+                          </case>
+                          <case op="contain" value="alternativa d">
+                            <mqtt topic="showmilhao/resposta">C|D</mqtt>
+                            <evaEmotion emotion="SURPRISE" />
+                            <talk>Resposta Errada!</talk>
+                            <stop />
+                          </case>
+                          <case op="contain" value="resposta d">
+                            <mqtt topic="showmilhao/resposta">C|D</mqtt>
+                            <evaEmotion emotion="SURPRISE" />
+                            <talk>Resposta Errada!</talk>
+                            <stop />
+                          </case>
+                          <case op="contain" value="opção e">
+                            <mqtt topic="showmilhao/resposta">C|E</mqtt>
+                            <evaEmotion emotion="SURPRISE" />
+                            <talk>Resposta Errada!</talk>
+                            <stop />
+                          </case>
+                          <case op="contain" value="letra e">
+                            <mqtt topic="showmilhao/resposta">C|E</mqtt>
+                            <evaEmotion emotion="SURPRISE" />
+                            <talk>Resposta Errada!</talk>
+                            <stop />
+                          </case>
+                          <case op="contain" value="alternativa e">
+                            <mqtt topic="showmilhao/resposta">C|E</mqtt>
+                            <evaEmotion emotion="SURPRISE" />
+                            <talk>Resposta Errada!</talk>
+                            <stop />
+                          </case>
+                          <case op="contain" value="resposta e">
+                            <mqtt topic="showmilhao/resposta">C|E</mqtt>
+                            <evaEmotion emotion="SURPRISE" />
+                            <talk>Resposta Errada!</talk>
+                            <stop />
+                          </case>
+                          <default>
+                            <talk>Alternativa inválida, por favor escolha entre as alternativas A, B, C, D, ou E.</talk>
+                            <goto target="list12" />
+                          </default>
+                        </switch>
+                </case>
+                <default>
+                  <goto target="rand1" />
+                </default>
+              </switch>
+            </case>
+            <case op="exact" value="3">
+              <switch var="bool13">
+                <case op="exact" value="0">
+                  <mqtt topic="showmilhao/atualiza">
+#nome|#pontos|#ajuda|O que as plantas precisam para fazer fotossíntese?|A) Apenas água|B) Luz solar, água e gás carbônico|C) Apenas luz solar|D) Apenas gás carbônico|E) Apenas terra
+</mqtt>
+<mqtt topic="showmilhao/ajuda"> </mqtt>
+<light state="ON" color="BLUE" />
+<audio source="efx-suspense" block="TRUE" />
+<talk>O que as plantas precisam para fazer fotossíntese?</talk>
+<talk>A, Apenas água</talk>
+<talk>B, Luz solar, água e gás carbônico</talk>
+<talk>C, Apenas luz solar</talk>
+<talk>D, Apenas gás carbônico</talk>
+<talk>É, Apenas terra</talk>
+<talk>Qual é a resposta?</talk>
+                      <listen id="list13" />
+                        <switch var="$">
+                          <case op="contain" value="remove">
+                            <switch var="alternativa">
+                             <case op="ne" value="1">
+                             <counter var="alternativa" op="+" value="1" />
+                             <counter var="ajuda" op="-" value="1" />
+                             <mqtt topic="showmilhao/atualiza">
+                              #nome|#pontos|#ajuda|O que as plantas precisam para fazer fotossíntese?|A) Apenas água|B) Luz solar, água e gás carbônico|C) Apenas luz solar|D) |E) 
+                             </mqtt>
+                             <talk>O que as plantas precisam para fazer fotossíntese?</talk>
+                             <talk>A, Apenas água</talk>
+                             <talk>B, Luz solar, água e gás carbônico</talk>
+                             <talk>C, Apenas luz solar</talk>
+                             <talk>Qual é a resposta?</talk>
+                             <goto target="list13" />
+                             </case>
+                             <default>
+                               <talk>Você não possui mais ajudas desse tipo, por favor diga a resposta ou tente outra ajuda</talk>
+                               <goto target="list13" />
+                             </default>
+                             </switch>
+                         </case>
+                         <case op="contain" value="dica">
+                               <switch var="dica">
+                               <case op="ne" value="1">
+                               <counter var="dica" op="+" value="1" />
+                               <counter var="ajuda" op="-" value="1" />
+                               <mqtt topic="showmilhao/ajuda">É um processo que envolve energia e troca de gases.</mqtt>
+                               <talk>É um processo que envolve energia e troca de gases.</talk>
+                               <talk>Qual é a resposta?</talk>
+                               <goto target="list13" />
+                               </case>
+                               <default>
+                                 <talk>Você não possui mais ajudas desse tipo, por favor diga a resposta ou tente outra ajuda</talk>
+                                 <goto target="list13" />
+                               </default>
+                               </switch>
+                         </case>
+                          <case op="contain" value="opção a">
+                            <mqtt topic="showmilhao/resposta">B|A</mqtt>
+                            <evaEmotion emotion="SURPRISE" />
+                            <talk>Resposta Errada!</talk>
+                            <stop />
+                          </case>
+                          <case op="contain" value="letra a">
+                            <mqtt topic="showmilhao/resposta">B|A</mqtt>
+                            <evaEmotion emotion="SURPRISE" />
+                            <talk>Resposta Errada!</talk>
+                            <stop />
+                          </case>
+                          <case op="contain" value="alternativa a">
+                            <mqtt topic="showmilhao/resposta">B|A</mqtt>
+                            <evaEmotion emotion="SURPRISE" />
+                            <talk>Resposta Errada!</talk>
+                            <stop />
+                          </case>
+                          <case op="contain" value="resposta a">
+                            <mqtt topic="showmilhao/resposta">B|A</mqtt>
+                            <evaEmotion emotion="SURPRISE" />
+                            <talk>Resposta Errada!</talk>
+                            <stop />
+                          </case>
+                          <case op="contain" value="opção b">
+                            <mqtt topic="showmilhao/resposta">B</mqtt>
+                      <evaEmotion emotion="HAPPY" />
+                      <motion head="2YES" />
+                      <light state="ON" color="GREEN" />
+                      <audio source="efx-children-ehh" block="TRUE" />
+                      <talk>Resposta Certa!</talk>
+                      <wait duration="500" />
+                      <counter var="pontos" op="+" value="1" />
+                      <counter var="bool13" op="=" value="1" />
+                      <counter var="acertos1" op="+" value="1" />
+                      <switch var="acertos1">
+                        <case op="exact" value="3">
+                          <evaEmotion emotion="INLOVE" />
+                          <talk>Meus parabéns, #nome! Você concluiu a primeira rodada.</talk>
+                          <talk>Acertou as perguntas e com um total de #pontos pontos, avançou para a segunda rodada.</talk>
+                          <wait duration="2000" />
+                          <evaEmotion emotion="NEUTRAL" />
+                          <goto target="segundaRodada" />
+                        </case>
+                        <default>
+                          <talk>Vamos para a próxima pergunta.</talk>
+                          <wait duration="1000" />
+                          <evaEmotion emotion="NEUTRAL" />
+                          <goto target="loop1" />
+                        </default>
+                      </switch>
+                          </case>
+                          <case op="contain" value="letra b">
+                            <mqtt topic="showmilhao/resposta">B</mqtt>
+                      <evaEmotion emotion="HAPPY" />
+                      <motion head="2YES" />
+                      <light state="ON" color="GREEN" />
+                      <audio source="efx-children-ehh" block="TRUE" />
+                      <talk>Resposta Certa!</talk>
+                      <wait duration="500" />
+                      <counter var="pontos" op="+" value="1" />
+                      <counter var="bool13" op="=" value="1" />
+                      <counter var="acertos1" op="+" value="1" />
+                      <switch var="acertos1">
+                        <case op="exact" value="3">
+                          <evaEmotion emotion="INLOVE" />
+                          <talk>Meus parabéns, #nome! Você concluiu a primeira rodada.</talk>
+                          <talk>Acertou as perguntas e com um total de #pontos pontos, avançou para a segunda rodada.</talk>
+                          <wait duration="2000" />
+                          <evaEmotion emotion="NEUTRAL" />
+                          <goto target="segundaRodada" />
+                        </case>
+                        <default>
+                          <talk>Vamos para a próxima pergunta.</talk>
+                          <wait duration="1000" />
+                          <evaEmotion emotion="NEUTRAL" />
+                          <goto target="loop1" />
+                        </default>
+                      </switch>
+                          </case>
+                          <case op="contain" value="alternativa b">
+                            <mqtt topic="showmilhao/resposta">B</mqtt>
+                      <evaEmotion emotion="HAPPY" />
+                      <motion head="2YES" />
+                      <light state="ON" color="GREEN" />
+                      <audio source="efx-children-ehh" block="TRUE" />
+                      <talk>Resposta Certa!</talk>
+                      <wait duration="500" />
+                      <counter var="pontos" op="+" value="1" />
+                      <counter var="bool13" op="=" value="1" />
+                      <counter var="acertos1" op="+" value="1" />
+                      <switch var="acertos1">
+                        <case op="exact" value="3">
+                          <evaEmotion emotion="INLOVE" />
+                          <talk>Meus parabéns, #nome! Você concluiu a primeira rodada.</talk>
+                          <talk>Acertou as perguntas e com um total de #pontos pontos, avançou para a segunda rodada.</talk>
+                          <wait duration="2000" />
+                          <evaEmotion emotion="NEUTRAL" />
+                          <goto target="segundaRodada" />
+                        </case>
+                        <default>
+                          <talk>Vamos para a próxima pergunta.</talk>
+                          <wait duration="1000" />
+                          <evaEmotion emotion="NEUTRAL" />
+                          <goto target="loop1" />
+                        </default>
+                      </switch>
+                          </case>
+                          <case op="contain" value="resposta b">
+                            <mqtt topic="showmilhao/resposta">B</mqtt>
+                      <evaEmotion emotion="HAPPY" />
+                      <motion head="2YES" />
+                      <light state="ON" color="GREEN" />
+                      <audio source="efx-children-ehh" block="TRUE" />
+                      <talk>Resposta Certa!</talk>
+                      <wait duration="500" />
+                      <counter var="pontos" op="+" value="1" />
+                      <counter var="bool13" op="=" value="1" />
+                      <counter var="acertos1" op="+" value="1" />
+                      <switch var="acertos1">
+                        <case op="exact" value="3">
+                          <evaEmotion emotion="INLOVE" />
+                          <talk>Meus parabéns, #nome! Você concluiu a primeira rodada.</talk>
+                          <talk>Acertou as perguntas e com um total de #pontos pontos, avançou para a segunda rodada.</talk>
+                          <wait duration="2000" />
+                          <evaEmotion emotion="NEUTRAL" />
+                          <goto target="segundaRodada" />
+                        </case>
+                        <default>
+                          <talk>Vamos para a próxima pergunta.</talk>
+                          <wait duration="1000" />
+                          <evaEmotion emotion="NEUTRAL" />
+                          <goto target="loop1" />
+                        </default>
+                      </switch>
+                          </case>
+                          <case op="contain" value="opção c">
+                            <mqtt topic="showmilhao/resposta">B|C</mqtt>
+                            <evaEmotion emotion="SURPRISE" />
+                            <talk>Resposta Errada!</talk>
+                            <stop />
+                          </case>
+                          <case op="contain" value="letra c">
+                            <mqtt topic="showmilhao/resposta">B|C</mqtt>
+                            <evaEmotion emotion="SURPRISE" />
+                            <talk>Resposta Errada!</talk>
+                            <stop />
+                          </case>
+                          <case op="contain" value="alternativa c">
+                            <mqtt topic="showmilhao/resposta">B|C</mqtt>
+                            <evaEmotion emotion="SURPRISE" />
+                            <talk>Resposta Errada!</talk>
+                            <stop />
+                          </case>
+                          <case op="contain" value="resposta c">
+                            <mqtt topic="showmilhao/resposta">B|C</mqtt>
+                            <evaEmotion emotion="SURPRISE" />
+                            <talk>Resposta Errada!</talk>
+                            <stop />
+                          </case>
+                          <case op="contain" value="opção d">
+                            <mqtt topic="showmilhao/resposta">B|D</mqtt>
+                            <evaEmotion emotion="SURPRISE" />
+                            <talk>Resposta Errada!</talk>
+                            <stop />
+                          </case>
+                          <case op="contain" value="letra d">
+                            <mqtt topic="showmilhao/resposta">B|D</mqtt>
+                            <evaEmotion emotion="SURPRISE" />
+                            <talk>Resposta Errada!</talk>
+                            <stop />
+                          </case>
+                          <case op="contain" value="alternativa d">
+                            <mqtt topic="showmilhao/resposta">B|D</mqtt>
+                            <evaEmotion emotion="SURPRISE" />
+                            <talk>Resposta Errada!</talk>
+                            <stop />
+                          </case>
+                          <case op="contain" value="resposta d">
+                            <mqtt topic="showmilhao/resposta">B|D</mqtt>
+                            <evaEmotion emotion="SURPRISE" />
+                            <talk>Resposta Errada!</talk>
+                            <stop />
+                          </case>
+                          <case op="contain" value="opção e">
+                            <mqtt topic="showmilhao/resposta">B|E</mqtt>
+                            <evaEmotion emotion="SURPRISE" />
+                            <talk>Resposta Errada!</talk>
+                            <stop />
+                          </case>
+                          <case op="contain" value="letra e">
+                            <mqtt topic="showmilhao/resposta">B|E</mqtt>
+                            <evaEmotion emotion="SURPRISE" />
+                            <talk>Resposta Errada!</talk>
+                            <stop />
+                          </case>
+                          <case op="contain" value="alternativa e">
+                            <mqtt topic="showmilhao/resposta">B|E</mqtt>
+                            <evaEmotion emotion="SURPRISE" />
+                            <talk>Resposta Errada!</talk>
+                            <stop />
+                          </case>
+                          <case op="contain" value="resposta e">
+                            <mqtt topic="showmilhao/resposta">B|E</mqtt>
+                            <evaEmotion emotion="SURPRISE" />
+                            <talk>Resposta Errada!</talk>
+                            <stop />
+                          </case>
+                          <default>
+                            <talk>Alternativa inválida, por favor escolha entre as alternativas A, B, C, D, ou E.</talk>
+                            <goto target="list13" />
+                          </default>
+                        </switch>
+                </case>
+                <default>
+                  <goto target="rand1" />
+                </default>
+              </switch>
+            </case>
+        <default /></switch>
+    <light state="OFF" id="segundaRodada" />
+    <evaEmotion emotion="SURPRISE" />
+    <talk>#nome, estou impressionado com o seu desempenho no jogo</talk>
+    <talk>Você é uma pessoa muito inteligente!</talk>
+    <wait duration="500" />
+    <talk>Você gostaria de continuar para a segunda rodada, com perguntas mais difíceis?</talk>
+    <listen />
+      <switch var="$">
+        <case op="contain" value="sim">
+          <talk>Resposta Errada!</talk>
+          <stop />
+        </case>
+        <default>
+          <evaEmotion emotion="NEUTRAL" />
+          <talk>Uma pena, quando mudar de idéia pode me chamar</talk>
+          <talk>Obrigado por jogar comigo!</talk>
+          <wait duration="500" />
+          <evaEmotion emotion="HAPPY" />
+          <stop />
+        </default>
+      </switch>
   </script>
-</evaml>
+  </evaml>
