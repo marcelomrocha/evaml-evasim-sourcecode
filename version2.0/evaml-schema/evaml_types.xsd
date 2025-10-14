@@ -163,11 +163,14 @@ Revision: 2024/09/26
             <xs:enumeration value="song-exodus"/>
 			<xs:enumeration value="song-fear"/>
 			<xs:enumeration value="song-happy"/>
+			<xs:enumeration value="song-happy-maior"/>
 			<xs:enumeration value="song-i-believe-i-can-fly"/>
 			<xs:enumeration value="song-i-will-be-there" />
             <xs:enumeration value="song-mj-heal-the-world"/>
             <xs:enumeration value="song-here-comes-the-sun"/>
 			<xs:enumeration value="song-macarena-edit"/>
+			<xs:enumeration value="song-macarena-edit-menor"/>
+			<xs:enumeration value="song-apaixonadinha"/>
             <xs:enumeration value="song-mj-heal-the-world"/>
             <xs:enumeration value="song-mj-thriller2"/>
             <xs:enumeration value="song-mj-thriller3-laugh"/>

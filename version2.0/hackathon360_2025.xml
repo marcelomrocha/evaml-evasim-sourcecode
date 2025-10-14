@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<evaml
+  name="hackathon360_2025"
+  xsi:noNamespaceSchemaLocation="evaml-schema/evaml_schema.xsd"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <settings>
+    <voice tone="pt-BR_IsabelaV3Voice" />
+    <lightEffects mode="ON" />
+    <audioEffects mode="ON" />
+  </settings>
+  <script>
+    <!-- Setting the robô initial state -->
+    <light state="OFF" />
+    <evaEmotion emotion="NEUTRAL" />
+    <led animation="STOP" />
+    <motion head="CENTER" rightArm="POSITION 0" leftArm="POSITION 0"/>
+    <talk>Olá pessoal!</talk>
+    <talk>Eu me chamo EVA.</talk>
+    <audio source="efx-blin2" block="TRUE" />
+    <talk>Sou um robô social</talk>
+    <wait duration="1500" />
+    <talk>Posso ser usado em aplicações em saúde e educação</talk>
+    <audio source="efx-blin2" block="TRUE" />
+    <talk>Agora, vou demonstrar algumas das minhas capacidades</talk>
+
+    <talk>Apesar de estar falando em português, eu posso falar em outros idiomas</talk>
+    <wait duration="1500" />
+    <talk>Posso falar em inglês</talk>
+    <wait duration="1500" />
+    <talk tone="en-US_EmmaExpressive">Hello there, how are you doing?</talk>
+    <wait duration="1500" />
+    <talk>Também posso falar em espanhol</talk>
+    <wait duration="1500" />
+    <talk tone="es-ES_LauraV3Voice">¿Hola, cómo estás? ¡Hoy es un cielo muy hermoso!</talk>
+    <wait duration="1500" />
+    
+ 
+
+    <talk>Posso ser usado em terapias que utilizam luzes coloridas para estímulo sensorial</talk>
+    <wait duration="1" />
+    <talk>Para isso, posso controlar essa lâmpada inteligente</talk>
+    <audio source="efx-display" block="FALSE" />
+    <light state="ON" color="WHITE"/>
+    <wait duration="1000" />
+    <audio source="efx-display" block="FALSE" />
+    <light state="ON" color="BLUE"/>
+    <wait duration="1000" />
+    <audio source="efx-display" block="FALSE" />
+    <light state="ON" color="GREEN"/>
+    <wait duration="1000" />
+    <audio source="efx-display" block="FALSE" />
+    <light state="ON" color="RED"/>
+    <wait duration="1000" />
+    <audio source="efx-display" block="FALSE" />
+    <light state="ON" color="YELLOW"/>
+    <wait duration="1000" />
+
+
+
+    <talk>Posso expressar diversas emoções através das minhas expressões faciais</talk>
+    <wait duration="1" />
+    <talk>Posso expressar felicidade</talk>
+    <audio source="efx-blin2" block="FALSE" />
+    <evaEmotion emotion="HAPPY" />
+    <wait duration="2000" />
+    <talk>Tristeza</talk>
+    <audio source="efx-blin2" block="FALSE" />
+    <evaEmotion emotion="SAD" />
+    <wait duration="2000" />
+    <talk>Posso expressar raiva</talk>
+    <audio source="efx-blin2" block="FALSE" />
+    <evaEmotion emotion="ANGRY" />
+    <wait duration="2000" />
+    <talk>Ficar com medo</talk>
+    <audio source="efx-blin2" block="FALSE" />
+    <evaEmotion emotion="FEAR" />
+    <wait duration="2000" />
+    <talk>Posso até ficar surpreso</talk>
+    <audio source="efx-blin2" block="FALSE" />
+    <evaEmotion emotion="SURPRISE" />
+    <wait duration="2000" />
+    <talk>Se eu não gostar de algo, posso ficar com nôjo</talk>
+    <audio source="efx-blin2" block="FALSE" />
+    <evaEmotion emotion="DISGUST" />
+    <wait duration="2000" />
+    <talk>Se eu for tratado com carinho, posso até me apaixonar</talk>
+    <light state="ON" color="RED"/>
+    <audio source="song-apaixonadinha" block="FALSE" />
+    <led animation="ANGRY2" />
+    <evaEmotion emotion="INLOVE" />
+    <motion head="2UP"/>
+    <wait duration="4000" />
+    <motion head="CENTER"/>
+    <wait duration="3500" />
+    <light state="ON" color="WHITE"/>
+
+    
+
+    <evaEmotion emotion="NEUTRAL" />
+    <talk>Eu também posso demonstrar emoções de maneira não verbal, utilizando as cores e as animações dos léds no meu peito</talk>
+    <audio source="efx-robot" block="FALSE" />
+    <light state="ON" color="GREEN" />
+    <led animation="HAPPY" />
+    <wait duration="5000" />
+    <audio source="efx-robot" block="FALSE" />
+    <light state="ON" color="RED" />
+    <led animation="ANGRY" />
+    <wait duration="5000" />
+    <audio source="efx-robot" block="FALSE" />
+    <light state="ON" color="YELLOW" />
+    <led animation="SURPRISE" />
+    <wait duration="5000" />
+    <audio source="efx-robot" block="FALSE" />
+    <light state="ON" color="WHITE"/>
+    <led animation="RAINBOW" />
+    <wait duration="5000" />
+
+
+
+    <led animation="STOP" />
+    <talk>Posso me expressar através de movimentos e gestos, usando minha cabeça e meus braços</talk>
+    <wait duration="1000"/>
+    <talk>Posso mover minha cabeça pra cima</talk>
+    <audio source="efx-robot-head" block="FALSE" />
+    <motion type="2UP" />
+    <wait duration="2000" />
+    <motion type="CENTER" />
+    <wait duration="2000" />
+    <talk>Para baixo</talk>
+    <audio source="efx-robot-head" block="FALSE" />
+    <motion type="2DOWN" />
+    <wait duration="2000" />
+    <motion type="CENTER" />
+    <wait duration="2000" />
+    <talk>Eu posso dizer não</talk>
+    <audio source="song-mj-thriller2" block="FALSE" />
+    <light state="ON" color="RED"/>
+    <led animation="ANGRY" />
+    <evaEmotion emotion="ANGRY" />
+    <motion head="DOWN"/>
+    <wait duration="1000" />
+    <motion type="2NO" />
+    <wait duration="6000" />
+    <talk>Também posso dizer sim</talk>
+    <led animation="HAPPY" />
+    <light state="ON" color="GREEN"/>
+    <evaEmotion emotion="HAPPY" />
+    <motion type="2YES" />
+    <wait duration="4000" />
+    <evaEmotion emotion="NEUTRAL" />
+    <motion head="CENTER"/>
+    <light state="ON" color="WHITE"/>
+    
+
+    <talk>Posso mover meu braço direito</talk>
+    <audio source="efx-robot-arm" block="FALSE" />
+    <motion rightArm="POSITION 3"/>
+    <wait duration="2000" />
+    <talk>Também posso mover meu braço esquerdo</talk>
+    <audio source="efx-robot-arm" block="FALSE" />
+    <motion leftArm="POSITION 2"/>
+    <wait duration="2000" />
+    <talk>Posso dançar balançando os meus braços</talk>
+    <evaEmotion emotion="HAPPY" />
+    <motion head="UP"/>
+    <light state="ON" color="RED"/>
+    <audio source="song-macarena-edit-menor" block="FALSE" />
+    <led animation="RAINBOW" />
+    <motion leftArm="POSITION 0"/>
+    <motion rightArm="POSITION 0"/>
+    <wait duration="5000" />
+    <motion rightArm="POSITION 2"/>
+    <wait duration="2000" />
+    <motion leftArm="POSITION 2"/>
+    <wait duration="2000" />
+    <motion rightArm="POSITION 3"/>
+    <wait duration="2000" />
+    <motion rightArm="POSITION 3"/>
+    <wait duration="1000" />
+    <motion leftArm="SHAKE1"/>
+    <motion rightArm="SHAKE1"/>
+    <wait duration="2000" />
+    <light state="ON" color="WHITE"/>
+    <led animation="STOP" />
+    <evaEmotion emotion="NEUTRAL" />
+    <motion head="CENTER"/>
+    <motion leftArm="POSITION 0"/>
+    <motion rightArm="POSITION 0"/>
+
+
+    <!-- Sound play test -->
+    <talk>Posso tocar sons, como aqueles do Jogo do Mário</talk>
+    <audio source="efx-mario-game-intro" block="TRUE" />
+    <talk>E também posso tocar músicas legais</talk>
+    <audio source="song-happy-maior" block="FALSE" />
+    <light state="ON" color="RED"/>
+    <led animation="SURPRISE" />
+    <motion head="RIGHT_UP2" rightArm="POSITION 3" leftArm="POSITION 0"/>
+    <evaEmotion emotion="HAPPY" />
+    <wait duration="2000" />
+    <motion head="2YES"/>
+    <wait duration="5000" />
+    <motion head="LEFT_UP2" rightArm="POSITION 0" leftArm="POSITION 3"/>
+    <light state="ON" color="BLUE"/>
+    <wait duration="2000" />
+    <motion head="2YES"/>
+    <wait duration="5000" />
+    <motion head="CENTER" rightArm="POSITION 0" leftArm="POSITION 0"/>
+    <wait duration="2000" />
+
+    <led animation="STOP" />
+    <evaEmotion emotion="NEUTRAL" />
+    <motion head="CENTER"/>
+    <talk>Bem, a minha demonstração termina aqui</talk>
+    <wait duration="1000" />
+    <talk>espero que tenham gostado</talk>
+    <wait duration="1000" />
+    <talk>Até mais!</talk>
+    <audio source="song-mj-heal-the-world" block="FALSE" />
+    <evaEmotion emotion="HAPPY" />
+    <motion rightArm="POSITION 3"/>
+    <wait duration="1200" />
+    <motion head="UP"/>
+    <wait duration="1200" />
+    <motion head="2YES"/>
+    <wait duration="1000" />
+    <motion rightArm="SHAKE2"/>
+    <wait duration="5000" />
+    <motion head="2YES"/>
+    <wait duration="1000" />
+    <motion rightArm="SHAKE2"/>
+    <wait duration="4000" />
+    <motion rightArm="POSITION 0"/>
+    <motion leftArm="POSITION 0"/>
+    <motion head="CENTER"/>
+    <light state="OFF" />
+    <evaEmotion emotion="NEUTRAL" />
+  </script>
+</evaml>
