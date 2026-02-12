@@ -1,2 +1,19 @@
+# Ignore node_modules and dependency directories
+node_modules/
+vendor/
+
+# Ignore build artifacts
+dist/
+build/
+*.log
+
+# Ignore system-generated files
+.DS_Store
+Thumbs.db
+
+# Ignore environment and secret files
+.env
+config.json
+
 version2.0/evasim/ibm_cred.txt
 ibm_cred_renan.txt
