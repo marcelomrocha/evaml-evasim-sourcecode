@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<evaml
+  name="Divas_Altivas_Novo"
+  xsi:noNamespaceSchemaLocation="evaml-schema/evaml_schema.xsd"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <settings>
+    <voice tone="pt-BR_IsabelaV3Voice" />
+    <lightEffects mode="ON" />
+    <audioEffects mode="ON" />
+  </settings>
+  <script>
+    <talk>Oi, eu sou a Eva!</talk>
+    <evaEmotion emotion="HAPPY" />
+    <led animation="RAINBOW" />
+    <wait duration="4000" />
+    <talk>Me fale o seu nome.</talk>
+    <listen var="nome"/>
+    <evaEmotion emotion="INLOVE" />
+    <talk>Prazer #nome</talk>
+    <talk>fiquei sabendo que você tem um grande problema em relação a timidez.</talk>
+    <talk>Preparei um jogo para você!</talk>
+    <talk id="volta">escolha um cartão</talk>
+    <evaEmotion emotion="NEUTRAL" />
+    <qrRead var="cartao"/>
+    <switch var="cartao">
+      <case op="exact" value="dançar">
+        <talk>vamos dançar comigo!</talk>
+        <evaEmotion emotion="HAPPY" />
+        <audio source="song-macarena-edit" block="FALSE" />
+        <led animation="RAINBOW" />
+        <motion head="2YES"/>
+        <motion leftArm="SHAKE1"/>
+        <motion rightArm="SHAKE2"/>
+        <wait duration="5000" />
+        <motion head="2YES"/>
+        <motion leftArm="SHAKE1"/>
+        <motion rightArm="SHAKE2"/>
+        <wait duration="5000" />
+        <led animation="RAINBOW" />
+        <motion head="2YES"/>
+        <motion leftArm="SHAKE1"/>
+        <motion rightArm="SHAKE2"/>
+        <wait duration="5000" />
+        <motion head="2YES"/>
+        <motion leftArm="SHAKE1"/>
+        <motion rightArm="SHAKE2"/>
+        <wait duration="5000" />
+        <motion head="2YES"/>
+        <motion leftArm="SHAKE1"/>
+        <motion rightArm="SHAKE2"/>
+        <wait duration="8000" />
+        <led animation="RAINBOW" />
+      </case>
+      <case op="exact" value="cantar">
+        <talk>Vamos cantar juntos?</talk>
+        <light state="ON" color="PINK"/>
+        <audio source="song-happy" block="FALSE" />
+        <evaEmotion emotion="SURPRISE" />
+        <wait duration="6000" />
+        <light state="OFF" />
+        <evaEmotion emotion="HAPPY" />
+      </case>
+      <case op="exact" value="piada">
+        <talk>vou contar uma piada</talk>
+        <talk> Por que a velhinha não usa relógio? </talk>
+        <audio source="efx-tic-toc" block="TRUE" />
+        <talk>Porque ela é sem hora.</talk>
+        <evaEmotion emotion="HAPPY" />
+        <motion head="2YES"/>
+        <audio source="efx-trombone-triste" block="TRUE" />
+      </case>
+    </switch>
+    <!-- Esta parte foi adicionada na segunda versão. -->
+    <talk>vocẽ deseja escolher mais um cartão?</talk>
+    <listen var="Resposta"/>
+    <switch var="Resposta">
+      <case op="contain" value="Sim">
+        <goto target="volta" />
+      </case>
+      <default>
+        <talk>tudo bem!</talk>
+      </default>
+    </switch>
+    <!-- A parte adicionada na segunda versão termina aqui. -->
+    <talk>Espero que eu tenha te ajudado, #nome!</talk>
+    <talk>até a próxima!</talk>
+    <audio source="efx-aplausos-bom" block="FALSE" />
+    <led animation="RAINBOW" />
+  </script>
+</evaml>

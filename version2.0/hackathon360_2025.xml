@@ -33,9 +33,6 @@
     <wait duration="1500" />
     <talk tone="es-ES_LauraV3Voice">¿Hola, cómo estás? ¡Hoy es un cielo muy hermoso!</talk>
     <wait duration="1500" />
-    
- 
-
     <talk>Posso ser usado em terapias que utilizam luzes coloridas para estímulo sensorial</talk>
     <wait duration="1" />
     <talk>Para isso, posso controlar essa lâmpada inteligente</talk>
@@ -54,9 +51,6 @@
     <audio source="efx-display" block="FALSE" />
     <light state="ON" color="YELLOW"/>
     <wait duration="1000" />
-
-
-
     <talk>Posso expressar diversas emoções através das minhas expressões faciais</talk>
     <wait duration="1" />
     <talk>Posso expressar felicidade</talk>
@@ -93,9 +87,6 @@
     <motion head="CENTER"/>
     <wait duration="3500" />
     <light state="ON" color="WHITE"/>
-
-    
-
     <evaEmotion emotion="NEUTRAL" />
     <talk>Eu também posso demonstrar emoções de maneira não verbal, utilizando as cores e as animações dos léds no meu peito</talk>
     <audio source="efx-robot" block="FALSE" />
@@ -114,9 +105,6 @@
     <light state="ON" color="WHITE"/>
     <led animation="RAINBOW" />
     <wait duration="5000" />
-
-
-
     <led animation="STOP" />
     <talk>Posso me expressar através de movimentos e gestos, usando minha cabeça e meus braços</talk>
     <wait duration="1000"/>
@@ -150,8 +138,6 @@
     <evaEmotion emotion="NEUTRAL" />
     <motion head="CENTER"/>
     <light state="ON" color="WHITE"/>
-    
-
     <talk>Posso mover meu braço direito</talk>
     <audio source="efx-robot-arm" block="FALSE" />
     <motion rightArm="POSITION 3"/>
@@ -186,8 +172,6 @@
     <motion head="CENTER"/>
     <motion leftArm="POSITION 0"/>
     <motion rightArm="POSITION 0"/>
-
-
     <!-- Sound play test -->
     <talk>Posso tocar sons, como aqueles do Jogo do Mário</talk>
     <audio source="efx-mario-game-intro" block="TRUE" />
@@ -207,7 +191,6 @@
     <wait duration="5000" />
     <motion head="CENTER" rightArm="POSITION 0" leftArm="POSITION 0"/>
     <wait duration="2000" />
-
     <led animation="STOP" />
     <evaEmotion emotion="NEUTRAL" />
     <motion head="CENTER"/>

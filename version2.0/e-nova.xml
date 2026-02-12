@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<evaml
+  name="e-nova" 
+  xsi:noNamespaceSchemaLocation="evaml-schema/evaml_schema.xsd"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <settings>
+    <voice tone="pt-BR_IsabelaV3Voice" />
+    <lightEffects mode="ON" />
+    <audioEffects mode="ON" />
+  </settings>
+  <script>
+    <!-- Interação do usuário com a EVA-->
+    <listen />
+
+  </script>
+
+
+  <macros>
+    <macro id="Apresentação">
+      <talk>Olá, meu nome é Eva! O que voce deseja revisar?</talk>
+      <talk>Química, física ou matemática</talk>
+      <listen var = "resposta"/>
+      <switch var = "resposta">
+        <case op="contain" value="química">
+          <talk>Como calculamos a densidade de uma substãncia</talk>
+          <talk>opção A = MASSA SOBRE VOLUME</talk>
+          <talk>opção B = VOLUME SOBRE MASSA</talk>
+          <listen var = "respostaQuimica1" />
+          <switch var = "respostaQuimica1">
+            <case op="exact" value="a">th
+              <evaEmotion emotion="HAPPY" />
+              <talk>parabéns, você acertou</talk>
+              <evaEmotion emotion="NEUTRAL" />
+            </case>
+            <case op="exact" value="b">
+              <evaEmotion emotion="SAD" />
+              <talk>Opa, você errou</talk>
+              <evaEmotion emotion="NEUTRAL" />
+            </case>
+          </switch>
+        </case>
+      <case op="contain" value="física">
+        <talk>qual é a primeira lei de newton?</talk>
+        <talk>opção A = toda ação tem uma reação</talk>
+        <talk>opção B = lei da inércia</talk>
+        <listen var = "respostaFisica1" />
+        <switch var = "respostaFisica1">
+          <case op="exact" value="a">
+            <evaEmotion emotion="SAD" />
+            <talk>Opa, você errou!</talk>
+            <evaEmotion emotion="NEUTRAL" />
+          </case>
+          <case op="exact" value="b">
+            <evaEmotion emotion="HAPPY" />
+            <talk>Parabéns, você acertou!</talk>
+            <evaEmotion emotion="NEUTRAL" />
+          </case>
+
+
+      </case>
+
+    </macro>
+  </macros>
+
+
+</evaml>
+
+

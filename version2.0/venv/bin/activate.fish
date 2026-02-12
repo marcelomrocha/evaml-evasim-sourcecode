@@ -33,7 +33,7 @@ end
 # Unset irrelevant variables.
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV /home/marcelo/MEGA/meus-codigos-2025/repositorios_git/evaml-evasim-sourcecode/version2.0/venv
+set -gx VIRTUAL_ENV /home/mrocha/MEGA/meus-codigos-2025/repositorios_git/evaml-evasim-sourcecode/version2.0/venv
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/"bin $PATH

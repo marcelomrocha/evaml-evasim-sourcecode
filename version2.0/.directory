@@ -1,0 +1,10 @@
+[Dolphin]
+HeaderColumnWidths=349,72,142,72
+SortRole=type
+Timestamp=2025,11,15,20,38,41.058
+Version=4
+ViewMode=2
+VisibleRoles=Details_text,Details_size,Details_modificationtime,Details_type,CustomizedDetails
+
+[Settings]
+HiddenFilesShown=true

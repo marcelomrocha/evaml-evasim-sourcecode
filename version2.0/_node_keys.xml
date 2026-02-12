@@ -1,12 +1,110 @@
-<evaml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="teste_qr_novo" xsi:noNamespaceSchemaLocation="evaml-schema/evaml_schema.xsd" id="8350f6b7c183d6a791d5488639d26324">
+<evaml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="Stars" xsi:noNamespaceSchemaLocation="evaml-schema/evaml_schema.xsd" id="d37c550d781bfb93b0088a2470598bcf">
   <settings>
     <voice tone="pt-BR_IsabelaV3Voice" key="1000" />
     <lightEffects mode="ON" />
     <audioEffects mode="ON" />
   </settings>
   <script>
-    <talk key="1001">Por favor, mostre uma seqüência de cartões QR</talk>
-    <counter var="ITERATION_VAR1" op="=" value="1" key="1002" /><switch id="LOOP_ID1_ITERATION_VAR1" var="ITERATION_VAR1"><case op="lte" value="6" key="1003" child_proc="false"><qrRead key="1004" />
-      <talk key="1005">$</talk>
-    <counter var="ITERATION_VAR1" op="+" value="1" key="1006" /><goto target="LOOP_ID1_ITERATION_VAR1" /></case><default key="1007" child_proc="false" /></switch></script>
+    
+    <evaEmotion emotion="HAPPY" key="1001" />
+    <talk key="1002">Olá, eu sou a Eva.</talk>
+    <talk key="1003">Qual é o seu nome?</talk>
+    <listen var="nome" key="1004" /> 
+    <evaEmotion emotion="HAPPY" key="1005" />
+    <talk key="1006">Olá #nome, tudo bem com você?</talk>
+    <evaEmotion emotion="NEUTRAL" key="1007" />
+    <light state="ON" color="PINK" key="1008" />
+    <wait duration="1000" key="1009" />
+    <light state="ON" color="RED" key="1010" />
+    <wait duration="1000" key="1011" />
+    <light state="ON" color="BLUE" key="1012" />
+    <evaEmotion emotion="INLOVE" id="voltar" key="1013" />
+    <talk key="1014">Olá, você quer aprender português ou matemática?</talk>
+    <listen key="1015" />
+    <switch var="$">
+    <case op="contain" value="português" key="1016" child_proc="false">
+      <evaEmotion emotion="HAPPY" key="1017" />
+      <talk key="1018">Eu posso te ajudar a entender sinônimo e antônimo.</talk>
+      <talk key="1019">Por qual gostaria de começar?</talk>
+      <listen key="1020" />
+      <switch var="$">
+        <case op="contain" value="sinônimo" key="1021" child_proc="false">
+          <evaEmotion emotion="NEUTRAL" key="1022" />
+          <talk key="1023">Sinônimos são as palavras que possuem o mesmo ou aproximadamente o mesmo significado.</talk>
+          <wait duration="500" key="1024" />
+          <talk key="1025">Por exemplo, bonita é sinônimo de linda</talk>
+        </case>
+        <case op="contain" value="antônimo" key="1026" child_proc="false">
+          <talk key="1027">Antônimos são palavras que possuem significados opostos, contrários.</talk>
+          <wait duration="500" key="1028" />
+          <talk key="1029">Por exemplo, alegre é antônimo de triste.</talk>
+        </case>
+      <default key="1030" child_proc="false" /></switch>
+    </case>
+    <case op="contain" value="matemática" key="1031" child_proc="false">
+      <evaEmotion emotion="HAPPY" key="1032" />
+      <talk key="1033">Eu posso te ajudar com Teorema de Pitágoras ou Trigonometria.</talk>
+      <wait duration="500" key="1034" />
+      <talk key="1035">Por qual gostaria de começar?</talk>
+      <listen key="1036" />
+      <switch var="$">
+        <case op="contain" value="pitágoras" key="1037" child_proc="false">
+          <talk key="1038">O quadrado da medida da hipotenusa é igual a soma dos quadrados das medidas dos catetos.</talk>
+          <wait duration="500" key="1039" />
+          <evaEmotion emotion="NEUTRAL" key="1040" />            
+        </case>
+        <case op="contain" value="trigonometria" key="1041" child_proc="false">
+          <evaEmotion emotion="HAPPY" key="1042" />
+          <talk key="1043">Eu tenho uma música para te ajudar na Tabela de ângulos notáveis.</talk>
+          <audio source="song-star-notaveis" block="FALSE" key="1044" />
+          <light state="ON" color="GREEN" key="1045" />
+          <wait duration="1000" key="1046" />
+          <light state="ON" color="RED" key="1047" />
+          <wait duration="1000" key="1048" />
+          <light state="ON" color="BLUE" key="1049" />
+          <wait duration="1000" key="1050" />
+          <light state="ON" color="PINK" key="1051" />
+          <wait duration="1000" key="1052" />
+          <light state="ON" color="YELLOW" key="1053" />
+          <wait duration="1000" key="1054" />
+          <light state="ON" color="GREEN" key="1055" />
+          <wait duration="1000" key="1056" />
+          <light state="ON" color="RED" key="1057" />
+          <wait duration="1000" key="1058" />
+          <light state="ON" color="BLUE" key="1059" />
+          <wait duration="1000" key="1060" />
+          <light state="ON" color="PINK" key="1061" />
+          <wait duration="1000" key="1062" />
+          <light state="ON" color="YELLOW" key="1063" />
+          <wait duration="1000" key="1064" />
+          <light state="ON" color="GREEN" key="1065" />
+          <wait duration="1000" key="1066" />
+          <light state="ON" color="RED" key="1067" />
+          <wait duration="1000" key="1068" />
+          <light state="ON" color="BLUE" key="1069" />
+          <wait duration="1000" key="1070" />
+          <light state="ON" color="PINK" key="1071" />
+          <wait duration="1000" key="1072" />
+          <light state="ON" color="YELLOW" key="1073" />
+          <wait duration="1000" key="1074" />
+          <light state="ON" color="GREEN" key="1075" />
+          <wait duration="1000" key="1076" />
+          <light state="ON" color="RED" key="1077" />
+          <wait duration="1000" key="1078" />
+          <light state="ON" color="BLUE" key="1079" />
+          <wait duration="1000" key="1080" />
+          <light state="ON" color="PINK" key="1081" />
+          <wait duration="1000" key="1082" />
+          <light state="ON" color="YELLOW" key="1083" />
+          <wait duration="3000" key="1084" />
+          <talk key="1085">Espero que tenha gostado. Até breve.</talk>
+          <stop />
+        </case>
+      <default key="1086" child_proc="false" /></switch>
+    </case>
+    <default key="1087" child_proc="false" /></switch>
+    <talk key="1088">Espero ter ajudado. Até breve.</talk>
+    <evaEmotion emotion="INLOVE" key="1089" />
+    <goto target="voltar" />
+  </script>
 </evaml>

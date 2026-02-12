@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<evaml
+  name="Âmina_novo"
+  xsi:noNamespaceSchemaLocation="evaml-schema/evaml_schema.xsd"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <settings>
+    <voice tone="pt-BR_IsabelaV3Voice" />
+    <lightEffects mode="ON" />
+    <audioEffects mode="ON" />
+  </settings>
+  <script>
+  <qrRead  var="ligar"/>
+  <evaEmotion emotion="HAPPY" />
+  <talk>Bom dia, Maitê! O que você gostaria de aprender hoje?</talk>
+  <qrRead var="problema" />
+  <wait duration="6000" id="VOLTAR"/>
+  <talk>Tudo bem! Como vocẽ deseja aprender? Com qüiz ou dicas?</talk> 
+  <qrRead var="resposta" />
+<switch var="resposta" >
+  <case op="contain" value="dicas">
+    <talk>Tudo bem, aqui vão algumas dicas para te ajudar em eletroquímica.  </talk>
+    <wait duration="2000" />
+    <talk> Primeiro, vá para um local confortável, seja na praia, na biblioteca ou em uma praça e leve seu livro.</talk> 
+    <talk> Com a ajuda do livro faça um resumo do que você entendeu.</talk>
+    <goto target="VOLTAR" />
+  </case>
+<case op="contain" value="quiz">
+  <talk>Tudo bem, vamos começar!</talk> 
+  <wait duration="1000" id="TENTEDNV"/>
+  <talk>Qual é o fenômeno que ocorre ao juntar água e sal de cozinha separando os íons?</talk>
+  <talk>1, corrosão</talk>
+  <talk>2, redução dos íons</talk>
+  <talk>3, reações nucleares</talk> 
+  <talk>4, dissociação iônica</talk> 
+  <wait duration="2000" />
+  <qrRead  var="respostaa"/> 
+  <switch var="respostaa">
+<case op="contain" value="1">
+  <evaEmotion emotion="SAD" />
+  <talk>Você errou, deseja encerrar ou repetir?</talk>
+  <motion type="2NO"/>
+  <qrRead var="repouenc"/>
+  <switch var="repouenc">
+    <case op="contain" value="repetir">
+    <talk>vamos lá</talk>
+    <goto target="TENTEDNV" />
+  </case>
+ </switch>
+ <switch var="repouenc">
+  <case op="contain" value="encerrar">
+    <talk>vamos para a proxima pergunta</talk>
+  </case>
+ </switch>
+ 
+</case>
+<case op="contain" value="2">
+  <evaEmotion emotion="SAD" />
+  <talk>Você errou, deseja encerrar ou repetir?</talk>
+  <motion type="2NO"/>
+  <qrRead var="repouenc"/>
+  <switch var="repouenc">
+   <case op="contain" value="repetir">
+     <talk>vamos lá</talk>
+     <goto target="TENTEDNV" />
+   </case>
+  </switch>
+  <switch var="repouenc">
+   <case op="contain" value="encerrar">
+     <talk>vamos para a proxima pergunta!</talk>
+   </case>
+  </switch>
+</case>
+<case op="contain" value="3">
+  <evaEmotion emotion="SAD" />
+  <talk>Você errou, deseja encerrar ou repetir?</talk>
+  <motion type="2NO"/>
+  <qrRead var="repouenc"/>
+  <switch var="repouenc">
+    <case op="contain" value="repetir">
+      <talk>vamos lá</talk>
+      <goto target="TENTEDNV" />
+    </case>
+  </switch>
+  <switch var="repouenc">
+    <case op="contain" value="encerrar">
+      <talk>vamos para a proxima pergunta!</talk>
+    </case>
+  </switch>
+</case>
+<case op="contain" value="4">
+  <evaEmotion emotion="HAPPY" />
+  <talk>Você acertou, Parabéns!</talk> 
+  <audio source="song-beyonce" block="FALSE" />
+  <motion type="2YES"/>
+  <motion leftArm="SHAKE2" rightArm="SHAKE2"/>
+  <motion type="2YES"/>
+  <motion leftArm="SHAKE2" rightArm="SHAKE2"/>
+  <light state="ON" color="GREEN"></light>
+  <wait duration="1000" ></wait>
+  <light state="ON" color="PINK"></light>
+  <wait duration="1000" ></wait> 
+  </case>
+<default>
+  <talk>resposta inválida </talk>
+  <goto target="TENTEDNV" />
+</default>
+  </switch> 
+  <evaEmotion emotion="NEUTRAL" id="REPETE"/>
+  <talk>Continuando, a eletroquímica é dividida em quais principais assuntos:</talk>
+  <talk>1, pilhas e baterias </talk>
+  <talk>2, eletrólise e baterias</talk>
+  <talk>3, baterias e correntes</talk>
+  <talk>4, pilhas e eletrólise</talk> 
+  <wait duration="2000" />
+  <qrRead var="respostaaa" /> 
+  <switch var="respostaaa">
+    <case op="contain" value="1">
+      <evaEmotion emotion="SAD" />
+      <talk>Você errou, deseja encerrar ou repetir?</talk>
+      <motion type="2NO"/>
+      <qrRead var="repouence"/>
+      <switch var="repouence">
+        <case op="contain" value="repetir">
+          <talk> vamos lá</talk>
+          <goto target="REPETE" />
+        </case>
+        <case op="contain" value="encerrar">
+          <talk>vamos para a proxima pergunta!</talk>
+        </case>
+      </switch>
+    </case>
+    <case op="contain" value="2">
+      <evaEmotion emotion="SAD" />
+      <talk>Você errou, deseja encerrar ou repetir?</talk>
+      <motion type="2NO"/>
+      <qrRead var="repouence"/>
+      <switch var="repouence">
+      <case op="contain" value="repetir">
+        <talk>vamos lá</talk>
+        <goto target="REPETE" />
+      </case>
+      <case op="contain" value="encerrar">
+        <talk>vamos para a proxima pergunta!</talk>
+      </case>
+      </switch>
+    </case>
+  <case op="contain" value="3">
+    <evaEmotion emotion="SAD" />
+    <talk>Você errou, deseja encerrar ou repetir?</talk>
+    <motion type="2NO"/>
+    <qrRead var="repouence"/>
+    <switch var="repouence">
+      <case op="contain" value="repetir">
+        <talk>vamos lá</talk>
+        <goto target="REPETE" />
+      </case>
+      <case op="contain" value="encerrar">
+        <talk>vamos para a proxima pergunta!</talk>
+      </case>
+   </switch>
+  </case>
+  <case op="contain" value="4">
+    <evaEmotion emotion="HAPPY" />
+    <talk>Você acertou, Parabéns!</talk> 
+    <audio source="song-beyonce" block="FALSE" />
+  <motion type="2YES"/>
+  <motion leftArm="SHAKE2" rightArm="SHAKE2"/>
+  <motion type="2YES"/>
+  <motion leftArm="SHAKE2" rightArm="SHAKE2"/>
+    <light state="ON" color="GREEN"></light>
+    <wait duration="1000" ></wait>
+    <light state="ON" color="PINK"></light>
+    <wait duration="1000" ></wait> 
+  </case>
+  <default>
+    <talk>resposta inválida</talk>
+    <goto target="REPETE" />
+  </default>
+    </switch> 
+</case> 
+<default>
+  <talk>resposta inválida</talk>
+  <goto target="VOLTAR" />
+</default>
+</switch>
+<talk>Foi um prazer estudar com você, boa prova!</talk>
+<stop />
+  </script>
+</evaml>

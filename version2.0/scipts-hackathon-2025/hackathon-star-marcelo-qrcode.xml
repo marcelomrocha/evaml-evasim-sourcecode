@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<evaml
+  name="Stars-QRcode" 
+  xsi:noNamespaceSchemaLocation="evaml-schema/evaml_schema.xsd"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <settings>
+    <voice tone="pt-BR_IsabelaV3Voice"></voice>
+    <lightEffects mode="ON" />
+    <audioEffects mode="ON" />
+  </settings>
+  <script>
+    <evaEmotion emotion="HAPPY" />
+    <talk>Olá, eu sou a Eva.</talk>
+    <talk>Qual é o seu nome?</talk>
+    <qrRead var="nome" /> 
+    <evaEmotion emotion="HAPPY" />
+    <talk>Olá #nome, tudo bem com você?</talk>
+    <evaEmotion emotion="NEUTRAL" />
+    <light state="ON" color="PINK" />
+    <wait duration="1000" />
+    <light state="ON" color="RED" />
+    <wait duration="1000" />
+    <light state="ON" color="BLUE" />
+    <evaEmotion emotion="INLOVE" id="voltar"/>
+    <talk>Olá, você quer aprender português ou matemática?</talk>
+    <qrRead />
+    <switch var="$">
+    <case op="contain" value="português">
+      <evaEmotion emotion="HAPPY" />
+      <talk>Eu posso te ajudar a entender sinônimo e antônimo.</talk>
+      <talk>Por qual gostaria de começar?</talk>
+      <qrRead />
+      <switch var="$">
+        <case op="contain" value="sinônimo">
+          <evaEmotion emotion="NEUTRAL" />
+          <talk>Sinônimos são as palavras que possuem o mesmo ou aproximadamente o mesmo significado.</talk>
+          <wait duration="500" />
+          <talk>Por exemplo, bonita é sinônimo de linda</talk>
+        </case>
+        <case op="contain" value="antônimo">
+          <talk>Antônimos são palavras que possuem significados opostos, contrários.</talk>
+          <wait duration="500" />
+          <talk>Por exemplo, alegre é antônimo de triste.</talk>
+        </case>
+      </switch>
+    </case>
+    <case op="contain" value="matemática">
+      <evaEmotion emotion="HAPPY" />
+      <talk>Eu posso te ajudar com Teorema de Pitágoras ou Trigonometria.</talk>
+      <wait duration="500" />
+      <talk>Por qual gostaria de começar?</talk>
+      <qrRead />
+      <switch var="$">
+        <case op="contain" value="pitágoras">
+          <talk>O quadrado da medida da hipotenusa é igual a soma dos quadrados das medidas dos catetos.</talk>
+          <wait duration="500" />
+          <evaEmotion emotion="NEUTRAL" />            
+        </case>
+        <case op="contain" value="trigonometria">
+          <evaEmotion emotion="HAPPY" />
+          <talk>Eu tenho uma música para te ajudar na Tabela de ângulos notáveis.</talk>
+          <audio source="song-star-notaveis" block="FALSE" />
+          <light state="ON" color="GREEN"/>
+          <wait duration="1000" />
+          <light state="ON" color="RED"/>
+          <wait duration="1000" />
+          <light state="ON" color="BLUE"/>
+          <wait duration="1000" />
+          <light state="ON" color="PINK"/>
+          <wait duration="1000" />
+          <light state="ON" color="YELLOW"/>
+          <wait duration="1000" />
+          <light state="ON" color="GREEN"/>
+          <wait duration="1000" />
+          <light state="ON" color="RED"/>
+          <wait duration="1000" />
+          <light state="ON" color="BLUE"/>
+          <wait duration="1000" />
+          <light state="ON" color="PINK"/>
+          <wait duration="1000" />
+          <light state="ON" color="YELLOW"/>
+          <wait duration="1000" />
+          <light state="ON" color="GREEN"/>
+          <wait duration="1000" />
+          <light state="ON" color="RED"/>
+          <wait duration="1000" />
+          <light state="ON" color="BLUE"/>
+          <wait duration="1000" />
+          <light state="ON" color="PINK"/>
+          <wait duration="1000" />
+          <light state="ON" color="YELLOW"/>
+          <wait duration="1000" />
+          <light state="ON" color="GREEN"/>
+          <wait duration="1000" />
+          <light state="ON" color="RED"/>
+          <wait duration="1000" />
+          <light state="ON" color="BLUE"/>
+          <wait duration="1000" />
+          <light state="ON" color="PINK"/>
+          <wait duration="1000" />
+          <light state="ON" color="YELLOW"/>
+          <wait duration="3000" />
+          <talk>Espero que tenha gostado. Até breve.</talk>
+          <stop />
+        </case>
+      </switch>
+    </case>
+    </switch>
+    <talk>Espero ter ajudado. Até breve.</talk>
+    <evaEmotion emotion="INLOVE" />
+    <goto target="voltar" />
+  </script>
+</evaml>

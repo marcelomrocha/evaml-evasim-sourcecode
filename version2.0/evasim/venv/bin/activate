@@ -39,10 +39,10 @@ deactivate nondestructive
 if [ "${OSTYPE:-}" = "cygwin" ] || [ "${OSTYPE:-}" = "msys" ] ; then
     # transform D:\path\to\venv to /d/path/to/venv on MSYS
     # and to /cygdrive/d/path/to/venv on Cygwin
-    export VIRTUAL_ENV=$(cygpath /home/marcelo/MEGA/meus-codigos-2025/repositorios_git/evaml-evasim-sourcecode/version2.0/evasim/venv)
+    export VIRTUAL_ENV=$(cygpath /home/mrocha/MEGA/meus-codigos-2025/repositorios_git/evaml-evasim-sourcecode/version2.0/evasim/venv)
 else
     # use the path as-is
-    export VIRTUAL_ENV=/home/marcelo/MEGA/meus-codigos-2025/repositorios_git/evaml-evasim-sourcecode/version2.0/evasim/venv
+    export VIRTUAL_ENV=/home/mrocha/MEGA/meus-codigos-2025/repositorios_git/evaml-evasim-sourcecode/version2.0/evasim/venv
 fi
 
 _OLD_VIRTUAL_PATH="$PATH"

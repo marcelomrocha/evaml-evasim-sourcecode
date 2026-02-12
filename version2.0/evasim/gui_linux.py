@@ -401,10 +401,10 @@ class Gui(ttk.Frame):
         # Clean, draw and place terminal in its frame
         self.terminal.delete('1.0', END)
         # Creating terminal text
-        self.terminal.insert(INSERT, "=============================================================================================================================\n")
-        self.terminal.insert(INSERT, "                                                                                                                       Eva Simulator for EvaML\n")
-        self.terminal.insert(INSERT, "                                                                                                   Version 2.0 - UFF / MidiaCom / CICESE - [2024]\n")
-        self.terminal.insert(INSERT, "=============================================================================================================================")
+        self.terminal.insert(INSERT, "=============================================================================================================\n")
+        self.terminal.insert(INSERT, "                                                                                        Eva Simulator for EvaML\n")
+        self.terminal.insert(INSERT, "                                                                       Version 2.0 - UFF / MidiaCom / CICESE - [2024]\n")
+        self.terminal.insert(INSERT, "=============================================================================================================")
 
         self.terminal.pack()
 
