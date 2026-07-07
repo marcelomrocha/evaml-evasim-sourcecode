@@ -860,7 +860,7 @@ def exec_comando(node):
             client.publish(topic_base + "/listen", language_for_listen)
 
             while (EVA_ROBOT_STATE != "FREE"):
-                pass
+                time.sleep(0.1)
 
             if node.get("var") == None: # Maintains compatibility with the use of the $ variable
                 eva_memory.var_dolar.append([EVA_DOLLAR, "<listen>"])
@@ -1194,7 +1194,7 @@ def exec_comando(node):
                     EVA_ROBOT_STATE = "BUSY"
                     client.publish(topic_base + "/audio", sound_file + "|" + "TRUE")
                     while (EVA_ROBOT_STATE != "FREE"):
-                        pass
+                        time.sleep(0.1)
                 else:
                     print(sound_file)
                     playsound("audio_files/" + sound_file + ".wav", block = block)
@@ -1405,7 +1405,7 @@ def exec_comando(node):
                 
 
             while (EVA_ROBOT_STATE != "FREE"):
-                pass
+                time.sleep(0.1)
             
             if node.get("var") == None: # Maintains compatibility with the use of the $ variable
                 eva_memory.var_dolar.append([EVA_DOLLAR, "<textEmotion>"])
@@ -1499,7 +1499,7 @@ def exec_comando(node):
             client.publish(topic_base + "/userEmotion", " ")
 
             while (EVA_ROBOT_STATE != "FREE"):
-                pass
+                time.sleep(0.1)
 
             if node.get("var") == None: # Maintains compatibility with the use of the $ variable
                 eva_memory.var_dolar.append([EVA_DOLLAR, "<listen>"])
@@ -1588,10 +1588,11 @@ def exec_comando(node):
             EVA_ROBOT_STATE = "BUSY"
             client.publish(topic_base + "/qrRead", " ")
             ledAnimation("LISTEN")
+            gui.terminal.insert(INSERT, "\nSTATE: EVA is capturing QR Code information...")
             
 
             while (EVA_ROBOT_STATE != "FREE"):
-                pass
+                time.sleep(0.1)
         
             if node.get("var") == None: # Maintains compatibility with the use of the $ variable
                 eva_memory.var_dolar.append([EVA_DOLLAR, "<qrRead>"])
@@ -1691,7 +1692,7 @@ def exec_comando(node):
             
 
             while (EVA_ROBOT_STATE != "FREE"):
-                pass
+                time.sleep(0.1)
         
             if node.get("var") == None: # Maintains compatibility with the use of the $ variable
                 eva_memory.var_dolar.append([EVA_DOLLAR, "<userID>"])

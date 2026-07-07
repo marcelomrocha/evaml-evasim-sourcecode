@@ -9,196 +9,247 @@
     <audioEffects mode="ON" />
   </settings>
   <script>
-  <listen  var="ligar"/>
-  <evaEmotion emotion="HAPPY" />
-  <talk>Bom dia, Maitê! O que você gostaria de aprender hoje?</talk>
-  <listen var="problema" />
-  <wait duration="6000" id="VOLTAR"/>
-  <talk>Tudo bem! Como você deseja aprender? Com qüiz ou dicas?</talk> 
-  <listen var="resposta" />
-  <switch var="resposta" >
-    <case op="contain" value="dicas">
-      <talk>Tudo bem, aqui vão algumas dicas para te ajudar em eletroquímica.  </talk>
-      <wait duration="2000" />
-      <talk>Primeiro, vá para um local confortável, seja na praia, na biblioteca ou em uma praça e leve seu livro.</talk> 
-      <talk>Com a ajuda do livro faça um resumo do que você entendeu.</talk>
-      <goto target="VOLTAR" />
-    </case>
-    <case op="contain" value="quiz">
-      <talk>Tudo bem, vamos começar!</talk> 
-      <wait duration="1000" id="TENTEDNV"/>
-      <talk>Qual é o fenômeno que ocorre ao juntar água e sal de cozinha separando os íons?</talk>
-      <talk>1, corrosão</talk>
-      <talk>2, redução dos íons</talk>
-      <talk>3, reações nucleares</talk> 
-      <talk>4, dissociação iônica</talk> 
-      <wait duration="2000" />
-      <listen  var="respostaa"/> 
-      <switch var="respostaa">
-        <case op="contain" value="1">
-          <evaEmotion emotion="SAD" />
-          <talk>Você errou, deseja encerrar ou repetir?</talk>
-          <motion type="2NO"/>
-          <listen var="repouenc"/>
+  <mqtt topic="eva/video/play">amina-capa.png</mqtt>
+  <evaEmotion emotion="NEUTRAL" />
+  <light state="OFF" />
+  <motion head="CENTER" leftArm="POSITION 0" rightArm="POSITION 0"/>
+  <wait duration="2000" />
+  <mqtt topic="eva/video/play">amina-ligar.png</mqtt>
+  <qrRead  var="ligar"/>
+  <switch var="ligar">
+    <!-- LIGAR O EVA #######################################   -->
+    <case op="exact" value="1">
+      <mqtt topic="eva/video/play">amina-capa.png</mqtt>
+      <evaEmotion emotion="HAPPY" />
+      <talk>Olá, como você está? O que você gostaria de aprender hoje?</talk>
+      <mqtt topic="eva/video/play">amina-eletroquimica.png</mqtt>
+      <qrRead var="problema" />
+      <switch var="problema">
+        <case op="exact" value="1">
+          <wait duration="2000" id="VOLTAR"/>
+          <talk>Como você deseja aprender? Com perguntas ou dicas?</talk> 
+          <mqtt topic="eva/video/play">amina-perguntas.png</mqtt>
+          <qrRead var="resposta" />
+          <switch var="resposta" >
+            <case op="contain" value="2">
+              <mqtt topic="eva/video/play">amina-capa.png</mqtt>
+              <talk>Tudo bem, aqui vão algumas dicas para te ajudar em eletroquímica.  </talk>
+              <wait duration="2000" />
+              <talk>Primeiro, vá para um local confortável, seja na praia, na biblioteca ou em uma praça e leve seu livro.</talk> 
+              <talk>Com a ajuda do livro faça um resumo do que você entendeu.</talk>
+              <goto target="AMINA_ENCERRAR" />
+            </case>
+            <case op="contain" value="1">
+              <evaEmotion emotion="NEUTRAL" />
+              <talk>Tudo bem, vamos começar!</talk> 
+              <wait duration="1000" id="TENTEDNV"/>
+              <evaEmotion emotion="NEUTRAL" />
+              <mqtt topic="eva/video/play">amina-capa.png</mqtt>
+              <talk>Qual é o fenômeno que ocorre ao juntar água e sal de cozinha separando os íons?</talk>
+              <mqtt topic="eva/video/play">amina-opcoes.png</mqtt>
+              <talk>1, corrosão</talk>
+              <talk>2, redução dos íons</talk>
+              <talk>3, reações nucleares</talk> 
+              <talk>4, dissociação iônica</talk>
+              <qrRead  var="respostaa"/> 
+              <switch var="respostaa">
+                <case op="contain" value="1">
+                  <mqtt topic="eva/video/play">amina-capa.png</mqtt>
+                  <evaEmotion emotion="SAD" />
+                  <motion type="2NO"/>
+                  <talk>Você errou! Deseja tentar novamente ou ir para a próxima pergunta?</talk>
+                  <mqtt topic="eva/video/play">amina-repetir.png</mqtt>
+                  <qrRead var="repouenc"/>
+                  <switch var="repouenc">
+                    <case op="contain" value="1">
+                      <mqtt topic="eva/video/play">amina-capa.png</mqtt>
+                      <talk>vamos la</talk>
+                      <goto target="TENTEDNV" />
+                    </case>
+                  </switch>
           <switch var="repouenc">
-            <case op="contain" value="repetir">
-              <talk>vamos lá</talk>
-              <goto target="TENTEDNV" />
+            <case op="contain" value="2">
+              <mqtt topic="eva/video/play">amina-capa.png</mqtt>
+              <talk>vamos para a próxima pergunta</talk>
             </case>
           </switch>
-  <switch var="repouenc">
-    <case op="contain" value="encerrar">
-      <talk>vamos para a proxima pergunta</talk>
-    </case>
-  </switch>
-  </case>
-  <case op="contain" value="2">
-    <evaEmotion emotion="SAD" />
-    <talk>Você errou, deseja encerrar ou repetir?</talk>
-    <motion type="2NO"/>
-    <listen var="repouenc"/>
-    <switch var="repouenc">
-    <case op="contain" value="repetir">
-      <talk>vamos lá</talk>
-      <goto target="TENTEDNV" />
-    </case>
-    </switch>
-    <switch var="repouenc">
-    <case op="contain" value="encerrar">
-      <talk>vamos para a proxima pergunta!</talk>
-    </case>
-    </switch>
-  </case>
-  <case op="contain" value="3">
-    <evaEmotion emotion="SAD" />
-    <talk>Você errou, deseja encerrar ou repetir?</talk>
-    <motion type="2NO"/>
-    <listen var="repouenc"/>
-    <switch var="repouenc">
-      <case op="contain" value="repetir">
-        <talk>vamos lá</talk>
-        <goto target="TENTEDNV" />
-      </case>
-    </switch>
-    <switch var="repouenc">
-      <case op="contain" value="encerrar">
-        <talk>vamos para a proxima pergunta!</talk>
-      </case>
-    </switch>
-  </case>
-  <case op="contain" value="4">
-    <evaEmotion emotion="HAPPY" />
-    <talk>Você acertou, Parabéns!</talk> 
-    <motion type="2YES"/>
-    <motion leftArm="SHAKE2" rightArm="SHAKE2"/>
-    <motion type="2YES"/>
-    <motion leftArm="SHAKE2" rightArm="SHAKE2"/>
-    <audio source="song-beyonce" block="FALSE" />
-    <light state="ON" color="GREEN"></light>
-    <wait duration="1000" ></wait>
-    <light state="ON" color="PINK"></light>
-    <wait duration="1000" ></wait> 
-    <light state="ON" color="GREEN"></light>
-    <wait duration="1000" ></wait>
-    <light state="ON" color="PINK"></light>
-    <wait duration="1000" ></wait> 
-    <light state="ON" color="GREEN"></light>
-    <wait duration="1000" ></wait>
-    <light state="ON" color="PINK"></light>
-    <wait duration="3000" ></wait> 
-    </case>
-  <default>
-    <talk>resposta inválida </talk>
-    <goto target="TENTEDNV" />
-  </default>
-    </switch> 
-    <evaEmotion emotion="NEUTRAL" id="REPETE"/>
-    <talk>Continuando, a eletroquímica é dividida em quais principais assuntos:</talk>
-    <talk>1, pilhas e baterias </talk>
-    <talk>2, eletrólise e baterias</talk>
-    <talk>3, baterias e correntes</talk>
-    <talk>4, pilhas e eletrólise</talk> 
-    <wait duration="2000" />
-    <listen var="respostaaa" /> 
-    <switch var="respostaaa">
-      <case op="contain" value="1">
-        <evaEmotion emotion="SAD" />
-        <talk>Você errou, deseja encerrar ou repetir?</talk>
-        <motion type="2NO"/>
-        <listen var="repouence"/>
-        <switch var="repouence">
-          <case op="contain" value="repetir">
-            <talk> vamos lá</talk>
-            <goto target="REPETE" />
           </case>
-          <case op="contain" value="encerrar">
-            <talk>vamos para a proxima pergunta!</talk>
+          <case op="contain" value="2">
+            <evaEmotion emotion="SAD" />
+            <motion type="2NO"/>
+            <talk>Você errou! Deseja tentar novamente ou ir para a próxima pergunta?</talk>
+            <mqtt topic="eva/video/play">amina-repetir.png</mqtt>
+            <qrRead var="repouenc"/>
+            <switch var="repouenc">
+            <case op="contain" value="1">
+              <mqtt topic="eva/video/play">amina-capa.png</mqtt>
+              <talk>vamos la</talk>
+              <goto target="TENTEDNV" />
+            </case>
+            </switch>
+            <switch var="repouenc">
+            <case op="contain" value="2">
+              <mqtt topic="eva/video/play">amina-capa.png</mqtt>
+              <talk>vamos para a próxima pergunta!</talk>
+            </case>
+            </switch>
           </case>
-        </switch>
-      </case>
-      <case op="contain" value="2">
-        <evaEmotion emotion="SAD" />
-        <talk>Você errou, deseja encerrar ou repetir?</talk>
-        <motion type="2NO"/>
-        <listen var="repouence"/>
-        <switch var="repouence">
-        <case op="contain" value="repetir">
-          <talk>vamos lá</talk>
-          <goto target="REPETE" />
+          <case op="contain" value="3">
+            <evaEmotion emotion="SAD" />
+            <motion type="2NO"/>
+            <talk>Você errou! Deseja tentar novamente ou ir para a próxima pergunta?</talk>
+            <mqtt topic="eva/video/play">amina-repetir.png</mqtt>
+            <qrRead var="repouenc"/>
+            <switch var="repouenc">
+              <case op="contain" value="1">
+                <mqtt topic="eva/video/play">amina-capa.png</mqtt>
+                <talk>vamos la</talk>
+                <goto target="TENTEDNV" />
+              </case>
+            </switch>
+            <switch var="repouenc">
+              <case op="contain" value="2">
+                <mqtt topic="eva/video/play">amina-capa.png</mqtt>
+                <talk>vamos para a próxima pergunta!</talk>
+              </case>
+            </switch>
+          </case>
+          <case op="contain" value="4">
+            <mqtt topic="eva/video/play">amina-capa.png</mqtt>
+            <evaEmotion emotion="HAPPY" />
+            <talk>Você acertou, Parabéns!</talk> 
+            <motion type="2YES"/>
+            <motion leftArm="SHAKE2" rightArm="SHAKE2"/>
+            <motion type="2YES"/>
+            <motion leftArm="SHAKE2" rightArm="SHAKE2"/>
+            <audio source="song-beyonce" block="FALSE" />
+            <light state="ON" color="GREEN"></light>
+            <wait duration="1000" ></wait>
+            <light state="ON" color="PINK"></light>
+            <wait duration="1000" ></wait> 
+            <light state="ON" color="GREEN"></light>
+            <wait duration="1000" ></wait>
+            <light state="ON" color="PINK"></light>
+            <wait duration="1000" ></wait> 
+            <light state="ON" color="GREEN"></light>
+            <wait duration="1000" ></wait>
+            <light state="ON" color="PINK"></light>
+            <wait duration="3000" ></wait> 
+            </case>
+          <default>
+            <talk>resposta inválida </talk>
+            <goto target="TENTEDNV" />
+          </default>
+            </switch> 
+            <evaEmotion emotion="NEUTRAL" id="REPETE"/>
+            <mqtt topic="eva/video/play">amina-capa.png</mqtt>
+            <talk>Continuando, a eletroquímica é dividida em quais principais assuntos:</talk>
+            <mqtt topic="eva/video/play">amina-opcoes2.png</mqtt>
+            <talk>1, pilhas e baterias </talk>
+            <talk>2, eletrólise e baterias</talk>
+            <talk>3, baterias e correntes</talk>
+            <talk>4, pilhas e eletrólise</talk> 
+            <qrRead var="respostaaa" /> 
+            <switch var="respostaaa">
+              <case op="contain" value="1">
+                <evaEmotion emotion="SAD" />
+                <motion type="2NO"/>
+                <talk>Você errou! Deseja tentar novamente ou encerrar aplicação?</talk>
+                <mqtt topic="eva/video/play">amina-encerrar.png</mqtt>
+                <qrRead var="repouence"/>
+                <switch var="repouence">
+                  <case op="contain" value="1">
+                    <mqtt topic="eva/video/play">amina-capa.png</mqtt>
+                    <talk> vamos la</talk>
+                    <goto target="REPETE" />
+                  </case>
+                  <case op="contain" value="2">
+                    <goto target="AMINA_ENCERRAR" />
+                  </case>
+                </switch>
+              </case>
+              <case op="contain" value="2">
+                <evaEmotion emotion="SAD" />
+                <motion type="2NO"/>
+                <talk>Você errou! Deseja tentar novamente ou encerrar aplicação?</talk>
+                <mqtt topic="eva/video/play">amina-encerrar.png</mqtt>
+                <qrRead var="repouence"/>
+                <switch var="repouence">
+                <case op="contain" value="1">
+                  <mqtt topic="eva/video/play">amina-capa.png</mqtt>
+                  <talk>vamos la</talk>
+                  <goto target="REPETE" />
+                </case>
+                <case op="contain" value="2">
+                  <goto target="AMINA_ENCERRAR" />
+                </case>
+                </switch>
+              </case>
+            <case op="contain" value="3">
+              <evaEmotion emotion="SAD" />
+              <motion type="2NO"/>
+              <talk>Você errou! Deseja tentar novamente ou encerrar aplicação?</talk>
+              <mqtt topic="eva/video/play">amina-encerrar.png</mqtt>
+              <qrRead var="repouence"/>
+              <switch var="repouence">
+                <case op="contain" value="1">
+                  <mqtt topic="eva/video/play">amina-capa.png</mqtt>
+                  <talk>vamos la</talk>
+                  <goto target="REPETE" />
+                </case>
+                <case op="contain" value="2">
+                  <goto target="AMINA_ENCERRAR" />
+                </case>
+            </switch>
+            </case>
+            <case op="contain" value="4">
+              <mqtt topic="eva/video/play">amina-capa.png</mqtt>
+              <evaEmotion emotion="HAPPY" />
+              <talk>Você acertou, Parabéns!</talk> 
+              <motion type="2YES"/>
+              <motion leftArm="SHAKE2" rightArm="SHAKE2"/>
+              <motion type="2YES"/>
+              <motion leftArm="SHAKE2" rightArm="SHAKE2"/>
+              <audio source="song-beyonce" block="FALSE" />
+              <light state="ON" color="GREEN"></light>
+              <wait duration="1000" ></wait>
+              <light state="ON" color="PINK"></light>
+              <wait duration="1000" ></wait> 
+              <light state="ON" color="GREEN"></light>
+              <wait duration="1000" ></wait>
+              <light state="ON" color="PINK"></light>
+              <wait duration="1000" ></wait> 
+              <light state="ON" color="GREEN"></light>
+              <wait duration="1000" ></wait>
+              <light state="ON" color="PINK"></light>
+              <wait duration="3000" ></wait> 
+            </case>
+            <default>
+              <talk>resposta inválida</talk>
+              <goto target="REPETE" />
+            </default>
+              </switch> 
+            </case> 
+            <default>
+              <talk>resposta inválida</talk>
+              <goto target="VOLTAR" />
+            </default>
+          </switch>
+          <mqtt id="AMINA_ENCERRAR" topic="eva/video/play">amina-capa.png</mqtt>
+          <evaEmotion emotion="HAPPY" />
+          <talk>Foi um prazer estudar com você, boa prova!</talk>
+          <evaEmotion emotion="NEUTRAL" />
+          <stop />
+          <!-- <goto target="opcoes_1a4" /> -->
         </case>
-        <case op="contain" value="encerrar">
-          <talk>vamos para a proxima pergunta!</talk>
-        </case>
-        </switch>
-      </case>
-    <case op="contain" value="3">
-      <evaEmotion emotion="SAD" />
-      <talk>Você errou, deseja encerrar ou repetir?</talk>
-      <motion type="2NO"/>
-      <listen var="repouence"/>
-      <switch var="repouence">
-        <case op="contain" value="repetir">
-          <talk>vamos lá</talk>
-          <goto target="REPETE" />
-        </case>
-        <case op="contain" value="encerrar">
-          <talk>vamos para a proxima pergunta!</talk>
-        </case>
-    </switch>
-    </case>
-    <case op="contain" value="4">
-      <evaEmotion emotion="HAPPY" />
-      <talk>Você acertou, Parabéns!</talk> 
-      <motion type="2YES"/>
-      <motion leftArm="SHAKE2" rightArm="SHAKE2"/>
-      <motion type="2YES"/>
-      <motion leftArm="SHAKE2" rightArm="SHAKE2"/>
-      <audio source="song-beyonce" block="FALSE" />
-      <light state="ON" color="GREEN"></light>
-      <wait duration="1000" ></wait>
-      <light state="ON" color="PINK"></light>
-      <wait duration="1000" ></wait> 
-      <light state="ON" color="GREEN"></light>
-      <wait duration="1000" ></wait>
-      <light state="ON" color="PINK"></light>
-      <wait duration="1000" ></wait> 
-      <light state="ON" color="GREEN"></light>
-      <wait duration="1000" ></wait>
-      <light state="ON" color="PINK"></light>
-      <wait duration="3000" ></wait> 
+        <default>
+          <stop />
+        </default>
+      </switch>
     </case>
     <default>
-      <talk>resposta inválida</talk>
-      <goto target="REPETE" />
-    </default>
-      </switch> 
-    </case> 
-    <default>
-      <talk>resposta inválida</talk>
-      <goto target="VOLTAR" />
+      <stop />
     </default>
   </switch>
-  <talk>Foi um prazer estudar com você, boa prova!</talk>
-  <stop />
   </script>
 </evaml>

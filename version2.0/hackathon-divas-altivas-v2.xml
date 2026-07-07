@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <evaml
-  name="Divas_Altivas_Novo"
+  name="divas-altivas-v2"
   xsi:noNamespaceSchemaLocation="evaml-schema/evaml_schema.xsd"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <settings>
@@ -9,21 +9,27 @@
     <audioEffects mode="ON" />
   </settings>
   <script>
-    <talk>Oi, eu sou a Eva!</talk>
+    <mqtt topic="eva/video/play">divas-capa.png</mqtt>
+    <talk>Oi, eu sou o robô Eva!</talk>
     <evaEmotion emotion="HAPPY" />
     <led animation="RAINBOW" />
-    <wait duration="4000" />
+    <wait duration="2000" />
     <talk>Me fale o seu nome.</talk>
-    <listen var="nome"/>
+    <qrRead var="nome"/>
     <evaEmotion emotion="INLOVE" />
-    <talk>Prazer #nome</talk>
+    <!-- A variável foi removida para que não fosse necessário o uso de outro qrcode -->
+    <!-- Por causa do problema do acento no nome de Heloísa, a variável foi substituída pela constante -->
+    <talk>Prazer, heloísa</talk>
     <talk>fiquei sabendo que você tem um grande problema em relação a timidez.</talk>
     <talk>Preparei um jogo para você!</talk>
     <talk id="volta">escolha um cartão</talk>
+    <mqtt topic="eva/video/play">divas-opcoes.png</mqtt>
     <evaEmotion emotion="NEUTRAL" />
     <qrRead var="cartao"/>
     <switch var="cartao">
-      <case op="exact" value="dançar">
+      <!-- 1 - Dançar -->
+      <case op="exact" value="1">
+        <mqtt topic="eva/video/play">divas-capa.png</mqtt>
         <talk>vamos dançar comigo!</talk>
         <evaEmotion emotion="HAPPY" />
         <audio source="song-macarena-edit" block="FALSE" />
@@ -51,7 +57,9 @@
         <wait duration="8000" />
         <led animation="RAINBOW" />
       </case>
-      <case op="exact" value="cantar">
+      <!-- 2 - Cantar -->
+      <case op="exact" value="2">
+        <mqtt topic="eva/video/play">divas-capa.png</mqtt>
         <talk>Vamos cantar juntos?</talk>
         <light state="ON" color="PINK"/>
         <audio source="song-happy" block="FALSE" />
@@ -60,7 +68,9 @@
         <light state="OFF" />
         <evaEmotion emotion="HAPPY" />
       </case>
-      <case op="exact" value="piada">
+      <!-- 3 - Piada -->
+      <case op="exact" value="3">
+        <mqtt topic="eva/video/play">divas-capa.png</mqtt>
         <talk>vou contar uma piada</talk>
         <talk> Por que a velhinha não usa relógio? </talk>
         <audio source="efx-tic-toc" block="TRUE" />
@@ -71,20 +81,24 @@
       </case>
     </switch>
     <!-- Esta parte foi adicionada na segunda versão. -->
-    <talk>vocẽ deseja escolher mais um cartão?</talk>
-    <listen var="Resposta"/>
+    <talk>você deseja escolher mais um cartão?</talk>
+    <mqtt topic="eva/video/play">divas-opcoes2.png</mqtt>
+    <qrRead var="Resposta"/>
     <switch var="Resposta">
-      <case op="contain" value="Sim">
+      <case op="contain" value="sim">
         <goto target="volta" />
       </case>
       <default>
         <talk>tudo bem!</talk>
+        <wait duration="3000" />
+        <!-- Volta o menu inicial -->
       </default>
     </switch>
     <!-- A parte adicionada na segunda versão termina aqui. -->
-    <talk>Espero que eu tenha te ajudado, #nome!</talk>
+    <talk>Espero que eu tenha te ajudado, heloísa!</talk>
     <talk>até a próxima!</talk>
     <audio source="efx-aplausos-bom" block="FALSE" />
     <led animation="RAINBOW" />
+    <wait duration="8000" />
   </script>
 </evaml>

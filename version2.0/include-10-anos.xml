@@ -1,0 +1,1097 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<evaml
+  name="include-10-anos"
+  xsi:noNamespaceSchemaLocation="evaml-schema/evaml_schema.xsd"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <settings>
+    <voice tone="pt-BR_IsabelaV3Voice"></voice>
+    <lightEffects mode="ON" />
+    <audioEffects mode="ON" />
+  </settings>
+  <script>
+    <mqtt id="start" topic="eva/video/play">menu-eva-fred.png</mqtt>
+    <motion head="CENTER" leftArm="POSITION 0" rightArm="POSITION 0"/>
+    <wait duration="2000" />
+    <evaEmotion emotion="NEUTRAL" />
+    <audio source="efx-display" block="TRUE" />
+    <!-- Escolha entre EVA e FRED ##################################################### -->
+    <qrRead />
+    <switch var="$">
+        <!-- INTERAÇÃO COM O EVA ######################################################### -->
+        <case op="exact" value="eva">
+            <!-- INICIO do MENU DO EVA -->
+            <evaEmotion emotion="NEUTRAL" />
+            <light state="OFF" />
+            <motion head="CENTER" leftArm="POSITION 0" rightArm="POSITION 0"/>
+            <mqtt topic="eva/video/play">eva-capa.png</mqtt>
+            <talk>Olá, eu sou o robô EVA</talk>
+            <audio source="efx-display" block="TRUE" />
+            <talk>Gostaria de interagir comigo?</talk>
+            <audio source="efx-display" block="TRUE" />
+            <mqtt topic="eva/video/play">menu-sim-nao.png</mqtt>
+            <talk>Responda utilizando o cartão verde, com a resposta sim, ou o vermelho, com a resposta não</talk>
+            <mqtt topic="eva/video/play">menu-seta-camera.png</mqtt>
+            <talk>Pegue o cartão desejado e o aponte de frente para a câmera, localizada sobre minha cabeça</talk>
+            <mqtt topic="eva/video/play">eva-capa.png</mqtt>
+            <talk>Caso queira voltar para o menu de opçções entre os robôs, utilize o cartão preto, com a palavra start</talk>
+            <qrRead id="opcoes_inicio"/>
+            <switch var="$">
+                <case op="exact" value="sim">
+                    <mqtt topic="eva/video/play">eva-sejam-bem-vindos.png</mqtt>
+                    <evaEmotion emotion="HAPPY" />
+                    <light state="ON" color="GREEN"/>
+                    <talk>Sejam bem-vindos ao evento de comemoração dos 10 anos do projeto include meninas!</talk>
+                    <audio source="efx-aplausos-bom" block="FALSE" />
+                    <wait duration="5000" />
+                    <talk>Você pode escolher uma das opções disponíveis utilizando os cartões de cor amarela.</talk>
+                    <audio source="efx-display" block="FALSE" />
+                    <mqtt topic="eva/video/play">eva-sejam-bem-vindos-op1.png</mqtt>
+                    <talk>A primeira opção demonstra as várias funcionalidades do robô EVA</talk>
+                    <audio source="efx-display" block="FALSE" />
+                    <mqtt topic="eva/video/play">eva-sejam-bem-vindos-op2a4.png</mqtt>
+                    <talk>As opções de 2 a 4 apresentam as aplicações construídas pelas 3 equipes de meninas das escolas no último rackathon, em 2025</talk>
+                    <audio source="efx-display" block="FALSE" />
+                    <mqtt topic="eva/video/play">eva-sejam-bem-vindos.png</mqtt>
+                </case>
+                <case op="exact" value="nao">
+                    <mqtt topic="eva/video/play">black-screen.png</mqtt>
+                    <audio source="song-oh-no" block="FALSE" />
+                    <motion head="2DOWN_RIGHT"/>
+                    <evaEmotion emotion="SAD" />
+                    <motion head="2NO"/>
+                    <wait duration="7000" />
+                    <talk>Estou triste por você não querer interagir comigo.</talk>
+                    <evaEmotion emotion="NEUTRAL" />
+                    <motion head="CENTER"/>
+                    <wait duration="1000" />
+                    <talk>Mesmo assim, pode contar comigo pro que der e vier!</talk>
+                    <motion head="2YES"/>
+                    <evaEmotion emotion="HAPPY" />
+                    <mqtt topic="eva/video/play">video-maria.mp4</mqtt>
+                    <led animation="RAINBOW" />
+                    <audio source="song-i-will-be-there" block="TRUE" />
+                    <goto target="start" />
+                </case>
+                <case op="exact" value="start">
+                    <goto target="start" />
+                </case>
+                <default>
+                    <useMacro macro="opcao_invalida" />
+                    <mqtt topic="eva/video/play">eva-capa.png</mqtt>
+                    <goto target="opcoes_inicio" />
+                </default>
+            </switch>
+            <!-- Espera as opções de 1 a 4 -->
+            <qrRead id="opcoes_1a4"/> 
+            <switch var="$">
+                <case op="exact" value="1">
+                    <useMacro macro="opcao_demo_eva" />
+                    <mqtt topic="eva/video/play">eva-sejam-bem-vindos.png</mqtt>
+                    <goto target="opcoes_1a4" />
+                </case>
+                <case op="exact" value="2">
+                    <!-- App STARS -->
+                    <useMacro macro="macro_stars" />
+                </case>
+                <case op="exact" value="3">
+                    <!-- App AMINA  -->
+                    <useMacro macro="macro_amina" />
+                </case>
+                <case op="exact" value="4">
+                    <!-- App DIVAS ALTIVAS  -->
+                    <useMacro macro="macro_divas" />
+                </case>
+                <case op="exact" value="start">
+                    <goto target="start" />
+                </case>
+                <default>
+                    <useMacro macro="opcao_invalida" />
+                    <mqtt topic="eva/video/play">eva-sejam-bem-vindos.png</mqtt>
+                    <wait duration="2000" />
+                    <audio source="efx-display" block="TRUE" />
+                    <goto target="opcoes_1a4" />
+                </default>
+            </switch>
+            <!-- <stop /> -->
+        </case>
+
+        <!-- ANIMAÇÃO COM O FRED ############################################## -->
+        <case op="exact" value="fred">
+            <mqtt topic="eva/video/play">fred-sejam-bem-vindos.png</mqtt>
+            <audio source="efx-display" block="TRUE" />
+            <talk>Sejam bem-vindos ao evento de comemoração dos 10 anos do projeto include meninas!</talk>
+            <audio source="efx-aplausos-bom" block="FALSE" />
+            <wait duration="5000" />
+            <talk>Agora, vocês verão uma demonstração das capacidades dos robôs FRÉD e FRIDA, através de uma cena que representa o primeiro encontro deles</talk>
+            <talk>As falas dos robôs estão em inglês, mas você poderá ver as legendas no monitor ao lado</talk>
+            <wait duration="2000" />
+
+            <useMacro macro="opcao_demo_fred" />
+            <goto target="start" />
+        </case>
+
+        <!-- VOLTA AO START ########################################################### -->
+        <default>
+            <goto target="start" />
+        </default>
+    </switch>
+  </script>
+  <macros>
+    <!-- MACRO DA EQUIPE STARS ##################################################################################### -->
+    <macro id="macro_stars">
+        <evaEmotion emotion="NEUTRAL" />
+        <light state="OFF" />
+        <mqtt topic="eva/video/play">stars-persona.png</mqtt>
+        <talk>Você está vendo as informações da aplicação da equipe stars</talk>
+        <talk>Na tela, você pode ver a persona definida pela equipe, seus objetivos e desafios</talk>
+        <talk>Para interagir com a aplicação, aponte o cartão sim, na cor verde, para a câmera do robô</talk>
+        <talk>Caso queira voltar para o menu com as outras aplicações, apresente o cartão vermelho, com a palavra não</talk>
+        <qrRead />
+        <switch var="$">
+            <case op="exact" value="sim">
+                <mqtt topic="eva/video/play">stars-capa.png</mqtt>
+                <evaEmotion emotion="HAPPY" />
+                <talk>Olá, eu sou o robô Eva.</talk>
+                <talk>Qual é o seu nome?</talk>
+                <qrRead var="nome" /> 
+                <evaEmotion emotion="HAPPY" />
+                <!-- A variável #nome foi retirada por causa do problema com acentuação no qrcode -->
+                <talk>Olá Heloísa!</talk>
+                <talk>Tudo bem com você?</talk>
+                <evaEmotion emotion="NEUTRAL" />
+                <light state="ON" color="PINK" />
+                <wait duration="1000" />
+                <light state="ON" color="RED" />
+                <wait duration="1000" />
+                <light state="ON" color="BLUE" />
+                <evaEmotion emotion="INLOVE" id="voltar"/>
+                <mqtt topic="eva/video/play">stars-capa.png</mqtt>
+                <talk>Você quer aprender português ou matemática?</talk>
+                <mqtt id="opcoes_portugues_matematica" topic="eva/video/play">stars-portugues-matematica.png</mqtt>
+                <qrRead />
+                <switch var="$">
+                    <case op="contain" value="1">
+                        <mqtt topic="eva/video/play">stars-capa.png</mqtt>
+                        <evaEmotion emotion="HAPPY" />
+                        <talk>Eu posso te ajudar a entender sinônimo e antônimo.</talk>
+                        <talk>Por qual gostaria de começar?</talk>
+                        <mqtt id='opcoes_sinonimo_antonimo' topic="eva/video/play">stars-sinonimo-antonimo.png</mqtt>
+                        <qrRead />
+                        <switch var="$">
+                            <case op="contain" value="1">
+                                <mqtt topic="eva/video/play">stars-capa.png</mqtt>
+                                <evaEmotion emotion="NEUTRAL" />
+                                <talk>Sinônimos são as palavras que possuem o mesmo ou aproximadamente o mesmo significado.</talk>
+                                <wait duration="500" />
+                                <talk>Por exemplo, bonita é sinônimo de linda</talk>
+                            </case>
+                            <case op="contain" value="2">
+                                <mqtt topic="eva/video/play">stars-capa.png</mqtt>
+                                <talk>Antônimos são palavras que possuem significados opostos, contrários.</talk>
+                                <wait duration="500" />
+                                <talk>Por exemplo, alegre é antônimo de triste.</talk>
+                            </case>
+                            <default>
+                                <useMacro macro="opcao_invalida" />
+                                <goto target="opcoes_sinonimo_antonimo" />
+                            </default>
+                        </switch>
+                    </case>
+                    <case op="contain" value="2">
+                        <mqtt topic="eva/video/play">stars-capa.png</mqtt>
+                        <evaEmotion emotion="HAPPY" />
+                        <talk>Eu posso te ajudar com Teorema de Pitágoras ou Trigonometria.</talk>
+                        <wait duration="500" />
+                        <talk>Por qual gostaria de começar?</talk>
+                        <mqtt id="opcoes_pitagpras_trigonometria" topic="eva/video/play">stars-pitagoras-trigonometria.png</mqtt>
+                        <qrRead />
+                        <switch var="$">
+                            <case op="contain" value="1">
+                                <mqtt topic="eva/video/play">stars-capa.png</mqtt>
+                                <talk>O quadrado da medida da hipotenusa é igual a soma dos quadrados das medidas dos catetos.</talk>
+                                <wait duration="500" />
+                                <evaEmotion emotion="NEUTRAL" />            
+                            </case>
+                            <case op="contain" value="2">
+                                <mqtt topic="eva/video/play">stars-capa.png</mqtt>
+                                <evaEmotion emotion="HAPPY" />
+                                <talk>Eu tenho uma música para te ajudar na Tabela de ângulos notáveis.</talk>
+                                <audio source="song-star-notaveis" block="FALSE" />
+                                <light state="ON" color="GREEN"/>
+                                <wait duration="1000" />
+                                <light state="ON" color="RED"/>
+                                <wait duration="1000" />
+                                <light state="ON" color="BLUE"/>
+                                <wait duration="1000" />
+                                <light state="ON" color="PINK"/>
+                                <wait duration="1000" />
+                                <light state="ON" color="YELLOW"/>
+                                <wait duration="1000" />
+                                <light state="ON" color="GREEN"/>
+                                <wait duration="1000" />
+                                <light state="ON" color="RED"/>
+                                <wait duration="1000" />
+                                <light state="ON" color="BLUE"/>
+                                <wait duration="1000" />
+                                <light state="ON" color="PINK"/>
+                                <wait duration="1000" />
+                                <light state="ON" color="YELLOW"/>
+                                <wait duration="1000" />
+                                <light state="ON" color="GREEN"/>
+                                <wait duration="1000" />
+                                <light state="ON" color="RED"/>
+                                <wait duration="1000" />
+                                <light state="ON" color="BLUE"/>
+                                <wait duration="1000" />
+                                <light state="ON" color="PINK"/>
+                                <wait duration="1000" />
+                                <light state="ON" color="YELLOW"/>
+                                <wait duration="1000" />
+                                <light state="ON" color="GREEN"/>
+                                <wait duration="1000" />
+                                <light state="ON" color="RED"/>
+                                <wait duration="1000" />
+                                <light state="ON" color="BLUE"/>
+                                <wait duration="1000" />
+                                <light state="ON" color="PINK"/>
+                                <wait duration="1000" />
+                                <light state="ON" color="YELLOW"/>
+                                <wait duration="3000" />
+                                <talk>Espero que tenha gostado. Até breve.</talk>
+                                <mqtt topic="eva/video/play">eva-sejam-bem-vindos.png</mqtt>
+                                <goto target="opcoes_1a4" />
+                            </case>
+                            <default>
+                                <useMacro macro="opcao_invalida" />
+                                <goto target="opcoes_pitagpras_trigonometria" />
+                            </default>
+                        </switch>
+                    </case>
+                    <default>
+                        <useMacro macro="opcao_invalida" />
+                        <goto target="opcoes_portugues_matematica" />
+                    </default>
+                </switch>
+                <talk>Espero ter ajudado.</talk>
+                <evaEmotion emotion="INLOVE" />
+                <goto target="voltar" />
+            </case>
+            <case op="exact" value="nao">
+                <mqtt topic="eva/video/play">eva-sejam-bem-vindos.png</mqtt>
+                <wait duration="2000" />
+                <audio source="efx-display" block="TRUE" />
+                <goto target="opcoes_1a4" />
+            </case>
+            <default>
+                <evaEmotion emotion="NEUTRAL" />
+                <mqtt topic="eva/video/play">eva-capa.png</mqtt>
+                <wait duration="2000" />
+                <audio source="efx-display" block="TRUE" />
+                <goto target="opcoes_inicio" />
+            </default>
+        </switch>
+    </macro>
+
+    <!-- MACRO DA EQUIPE AMINA ##################################################################################### -->
+    <macro id="macro_amina">
+        <evaEmotion emotion="NEUTRAL" />
+        <light state="OFF" />
+        <mqtt topic="eva/video/play">amina-persona.png</mqtt>
+        <talk>Você está vendo as informações da aplicação da equipe âmina</talk>
+        <talk>Na tela, você pode ver a persona definida pela equipe, seus objetivos e desafios</talk>
+        <talk>Para interagir com a aplicação, aponte o cartão sim, na cor verde, para a câmera do robô</talk>
+        <talk>Caso queira voltar para o menu com as outras aplicações, apresente o cartão vermelho, com a palavra não</talk>
+        <qrRead />
+        <switch var="$">
+            <case op="exact" value="sim">
+                <mqtt topic="eva/video/play">amina-capa.png</mqtt>
+                <evaEmotion emotion="NEUTRAL" />
+                <light state="OFF" />
+                <motion head="CENTER" leftArm="POSITION 0" rightArm="POSITION 0"/>
+                <wait duration="2000" />
+                <mqtt id="AMINA_LIGAR" topic="eva/video/play">amina-ligar.png</mqtt>
+                <qrRead  var="ligar"/>
+                <switch var="ligar">
+                    <!-- LIGAR O EVA #######################################   -->
+                    <case op="exact" value="1">
+                        <mqtt topic="eva/video/play">amina-capa.png</mqtt>
+                        <evaEmotion emotion="HAPPY" />
+                        <talk>Olá, como você está? O que você gostaria de aprender hoje?</talk>
+                        <mqtt id="AMINA_ELETROQUIMICA" topic="eva/video/play">amina-eletroquimica.png</mqtt>
+                        <qrRead var="problema" />
+                        <switch var="problema">
+                            <case op="exact" value="1">
+                                <mqtt topic="eva/video/play">amina-capa.png</mqtt>
+                                <wait duration="2000" id="VOLTAR"/>
+                                <talk>Como você deseja aprender? Com perguntas ou dicas?</talk> 
+                                <mqtt topic="eva/video/play">amina-perguntas.png</mqtt>
+                                <qrRead var="resposta" />
+                                <switch var="resposta" >
+                                    <case op="contain" value="2">
+                                        <mqtt topic="eva/video/play">amina-capa.png</mqtt>
+                                        <talk>Tudo bem, aqui vão algumas dicas para te ajudar em eletroquímica.  </talk>
+                                        <wait duration="2000" />
+                                        <talk>Primeiro, vá para um local confortável, seja na praia, na biblioteca ou em uma praça e leve seu livro.</talk> 
+                                        <talk>Com a ajuda do livro faça um resumo do que você entendeu.</talk>
+                                        <goto target="AMINA_ENCERRAR" />
+                                    </case>
+                                    <case op="contain" value="1">
+                                        <evaEmotion emotion="NEUTRAL" />
+                                        <talk>Tudo bem, vamos começar!</talk> 
+                                        <wait duration="1000" id="TENTEDNV"/>
+                                        <evaEmotion emotion="NEUTRAL" />
+                                        <mqtt topic="eva/video/play">amina-capa.png</mqtt>
+                                        <talk>Qual é o fenômeno que ocorre ao juntar água e sal de cozinha separando os íons?</talk>
+                                        <mqtt topic="eva/video/play">amina-opcoes.png</mqtt>
+                                        <talk>1, corrosão</talk>
+                                        <talk>2, redução dos íons</talk>
+                                        <talk>3, reações nucleares</talk> 
+                                        <talk>4, dissociação iônica</talk>
+                                        <qrRead  var="respostaa"/> 
+                                        <switch var="respostaa">
+                                            <case op="contain" value="1">
+                                                <mqtt topic="eva/video/play">amina-capa.png</mqtt>
+                                                <evaEmotion emotion="SAD" />
+                                                <motion type="2NO"/>
+                                                <talk>Você errou! Deseja tentar novamente ou ir para a próxima pergunta?</talk>
+                                                <mqtt topic="eva/video/play">amina-repetir.png</mqtt>
+                                                <qrRead var="repouenc"/>
+                                                <switch var="repouenc">
+                                                    <case op="contain" value="1">
+                                                        <mqtt topic="eva/video/play">amina-capa.png</mqtt>
+                                                        <talk>vamos la</talk>
+                                                        <goto target="TENTEDNV" />
+                                                    </case>
+                                                </switch>
+                                                <switch var="repouenc">
+                                                    <case op="contain" value="2">
+                                                        <mqtt topic="eva/video/play">amina-capa.png</mqtt>
+                                                        <talk>vamos para a próxima pergunta</talk>
+                                                    </case>
+                                                </switch>
+                                            </case>
+                                            <case op="contain" value="2">
+                                                <evaEmotion emotion="SAD" />
+                                                <motion type="2NO"/>
+                                                <talk>Você errou! Deseja tentar novamente ou ir para a próxima pergunta?</talk>
+                                                <mqtt topic="eva/video/play">amina-repetir.png</mqtt>
+                                                <qrRead var="repouenc"/>
+                                                <switch var="repouenc">
+                                                    <case op="contain" value="1">
+                                                        <mqtt topic="eva/video/play">amina-capa.png</mqtt>
+                                                        <talk>vamos la</talk>
+                                                        <goto target="TENTEDNV" />
+                                                    </case>
+                                                </switch>
+                                                <switch var="repouenc">
+                                                    <case op="contain" value="2">
+                                                        <mqtt topic="eva/video/play">amina-capa.png</mqtt>
+                                                        <talk>vamos para a próxima pergunta!</talk>
+                                                    </case>
+                                                </switch>
+                                            </case>
+                                            <case op="contain" value="3">
+                                                <evaEmotion emotion="SAD" />
+                                                <motion type="2NO"/>
+                                                <talk>Você errou! Deseja tentar novamente ou ir para a próxima pergunta?</talk>
+                                                <mqtt topic="eva/video/play">amina-repetir.png</mqtt>
+                                                <qrRead var="repouenc"/>
+                                                <switch var="repouenc">
+                                                    <case op="contain" value="1">
+                                                        <mqtt topic="eva/video/play">amina-capa.png</mqtt>
+                                                        <talk>vamos la</talk>
+                                                        <goto target="TENTEDNV" />
+                                                    </case>
+                                                </switch>
+                                                <switch var="repouenc">
+                                                    <case op="contain" value="2">
+                                                        <mqtt topic="eva/video/play">amina-capa.png</mqtt>
+                                                        <talk>vamos para a próxima pergunta!</talk>
+                                                    </case>
+                                                </switch>
+                                            </case>
+                                            <case op="contain" value="4">
+                                                <mqtt topic="eva/video/play">amina-capa.png</mqtt>
+                                                <evaEmotion emotion="HAPPY" />
+                                                <talk>Você acertou, Parabéns!</talk> 
+                                                <motion type="2YES"/>
+                                                <motion leftArm="SHAKE2" rightArm="SHAKE2"/>
+                                                <motion type="2YES"/>
+                                                <motion leftArm="SHAKE2" rightArm="SHAKE2"/>
+                                                <audio source="song-beyonce" block="FALSE" />
+                                                <light state="ON" color="GREEN"></light>
+                                                <wait duration="1000" ></wait>
+                                                <light state="ON" color="PINK"></light>
+                                                <wait duration="1000" ></wait> 
+                                                <light state="ON" color="GREEN"></light>
+                                                <wait duration="1000" ></wait>
+                                                <light state="ON" color="PINK"></light>
+                                                <wait duration="1000" ></wait> 
+                                                <light state="ON" color="GREEN"></light>
+                                                <wait duration="1000" ></wait>
+                                                <light state="ON" color="PINK"></light>
+                                                <wait duration="3000" ></wait> 
+                                            </case>
+                                            <default>
+                                                <talk>resposta inválida </talk>
+                                                <useMacro macro="opcao_invalida" />
+                                                <mqtt topic="eva/video/play">amina-capa.png</mqtt>
+                                                <goto target="TENTEDNV" />
+                                            </default>
+                                        </switch> 
+                                        <evaEmotion emotion="NEUTRAL" id="REPETE"/>
+                                        <mqtt topic="eva/video/play">amina-capa.png</mqtt>
+                                        <talk>Continuando, a eletroquímica é dividida em quais principais assuntos:</talk>
+                                        <mqtt topic="eva/video/play">amina-opcoes2.png</mqtt>
+                                        <talk>1, pilhas e baterias </talk>
+                                        <talk>2, eletrólise e baterias</talk>
+                                        <talk>3, baterias e correntes</talk>
+                                        <talk>4, pilhas e eletrólise</talk> 
+                                        <qrRead var="respostaaa" /> 
+                                        <switch var="respostaaa">
+                                            <case op="contain" value="1">
+                                                <evaEmotion emotion="SAD" />
+                                                <motion type="2NO"/>
+                                                <talk>Você errou! Deseja tentar novamente ou encerrar aplicação?</talk>
+                                                <mqtt topic="eva/video/play">amina-encerrar.png</mqtt>
+                                                <qrRead var="repouence"/>
+                                                <switch var="repouence">
+                                                    <case op="contain" value="1">
+                                                        <mqtt topic="eva/video/play">amina-capa.png</mqtt>
+                                                        <talk> vamos la</talk>
+                                                        <goto target="REPETE" />
+                                                    </case>
+                                                    <case op="contain" value="2">
+                                                        <goto target="AMINA_ENCERRAR" />
+                                                    </case>
+                                                </switch>
+                                            </case>
+                                            <case op="contain" value="2">
+                                                <evaEmotion emotion="SAD" />
+                                                <motion type="2NO"/>
+                                                <talk>Você errou! Deseja tentar novamente ou encerrar aplicação?</talk>
+                                                <mqtt topic="eva/video/play">amina-encerrar.png</mqtt>
+                                                <qrRead var="repouence"/>
+                                                <switch var="repouence">
+                                                    <case op="contain" value="1">
+                                                        <mqtt topic="eva/video/play">amina-capa.png</mqtt>
+                                                        <talk>vamos la</talk>
+                                                        <goto target="REPETE" />
+                                                    </case>
+                                                    <case op="contain" value="2">
+                                                        <goto target="AMINA_ENCERRAR" />
+                                                    </case>
+                                                </switch>
+                                            </case>
+                                            <case op="contain" value="3">
+                                                <evaEmotion emotion="SAD" />
+                                                <motion type="2NO"/>
+                                                <talk>Você errou! Deseja tentar novamente ou encerrar aplicação?</talk>
+                                                <mqtt topic="eva/video/play">amina-encerrar.png</mqtt>
+                                                <qrRead var="repouence"/>
+                                                <switch var="repouence">
+                                                    <case op="contain" value="1">
+                                                        <mqtt topic="eva/video/play">amina-capa.png</mqtt>
+                                                        <talk>vamos la</talk>
+                                                        <goto target="REPETE" />
+                                                    </case>
+                                                    <case op="contain" value="2">
+                                                        <goto target="AMINA_ENCERRAR" />
+                                                    </case>
+                                                </switch>
+                                            </case>
+                                            <case op="contain" value="4">
+                                                <mqtt topic="eva/video/play">amina-capa.png</mqtt>
+                                                <evaEmotion emotion="HAPPY" />
+                                                <talk>Você acertou, Parabéns!</talk> 
+                                                <motion type="2YES"/>
+                                                <motion leftArm="SHAKE2" rightArm="SHAKE2"/>
+                                                <motion type="2YES"/>
+                                                <motion leftArm="SHAKE2" rightArm="SHAKE2"/>
+                                                <audio source="song-beyonce" block="FALSE" />
+                                                <light state="ON" color="GREEN"></light>
+                                                <wait duration="1000" ></wait>
+                                                <light state="ON" color="PINK"></light>
+                                                <wait duration="1000" ></wait> 
+                                                <light state="ON" color="GREEN"></light>
+                                                <wait duration="1000" ></wait>
+                                                <light state="ON" color="PINK"></light>
+                                                <wait duration="1000" ></wait> 
+                                                <light state="ON" color="GREEN"></light>
+                                                <wait duration="1000" ></wait>
+                                                <light state="ON" color="PINK"></light>
+                                                <wait duration="3000" ></wait> 
+                                            </case>
+                                            <default>
+                                                <useMacro macro="opcao_invalida" />
+                                                <mqtt topic="eva/video/play">amina-capa.png</mqtt>
+                                                <goto target="REPETE" />
+                                            </default>
+                                        </switch> 
+                                    </case> 
+                                    <default>
+                                        <useMacro macro="opcao_invalida" />
+                                        <mqtt topic="eva/video/play">amina-capa.png</mqtt>
+                                        <goto target="VOLTAR" />
+                                    </default>
+                                </switch>
+                                <mqtt id="AMINA_ENCERRAR" topic="eva/video/play">amina-capa.png</mqtt>
+                                <evaEmotion emotion="HAPPY" />
+                                <talk>Foi um prazer estudar com você, boa prova!</talk>
+                                <evaEmotion emotion="NEUTRAL" />
+                                <mqtt topic="eva/video/play">eva-sejam-bem-vindos.png</mqtt>
+                                <goto target="opcoes_1a4" />
+                            </case>
+                            <default>
+                                <useMacro macro="opcao_invalida" />
+                            <audio source="efx-display" block="TRUE" />
+                            <goto target="AMINA_ELETROQUIMICA" />
+                            </default>
+                        </switch>
+                    </case>
+                    <default>
+                        <useMacro macro="opcao_invalida" />
+                        <audio source="efx-display" block="TRUE" />
+                        <goto target="AMINA_LIGAR" />
+                    </default>
+                </switch>
+            </case>
+            <case op="exact" value="nao">
+                <mqtt topic="eva/video/play">eva-sejam-bem-vindos.png</mqtt>
+                <wait duration="2000" />
+                <audio source="efx-display" block="TRUE" />
+                <goto target="opcoes_1a4" />
+            </case>
+            <default>
+                <evaEmotion emotion="NEUTRAL" />
+                <mqtt topic="eva/video/play">eva-capa.png</mqtt>
+                <wait duration="2000" />
+                <audio source="efx-display" block="TRUE" />
+                <goto target="opcoes_inicio" />
+            </default>
+        </switch>
+    </macro>
+
+    <!-- ################################################################################################################### -->
+    <!-- MACRO DA EQUIPE DIVAS ALTIVAS ##################################################################################### -->
+    <!-- ################################################################################################################### -->
+    <macro id="macro_divas">
+        <evaEmotion emotion="NEUTRAL" />
+        <light state="OFF" />
+        <mqtt topic="eva/video/play">divas-persona.png</mqtt>
+        <talk>Você está vendo as informações da aplicação da equipe divas altivas</talk>
+        <talk>Na tela, você pode ver a persona definida pela equipe, seus objetivos e desafios</talk>
+        <talk>Para interagir com a aplicação, aponte o cartão sim, na cor verde, para a câmera do robô</talk>
+        <talk>Caso queira voltar para o menu com as outras aplicações, apresente o cartão vermelho, com a palavra não</talk>
+        <qrRead />
+        <switch var="$">
+            <case op="exact" value="sim">
+                <mqtt topic="eva/video/play">divas-capa.png</mqtt>
+                <talk>Oi, eu sou o robô Eva!</talk>
+                <evaEmotion emotion="HAPPY" />
+                <led animation="RAINBOW" />
+                <wait duration="2000" />
+                <talk>Me fale o seu nome.</talk>
+                <qrRead var="nome"/>
+                <evaEmotion emotion="INLOVE" />
+                <!-- A variável foi removida para que não fosse necessário o uso de outro qrcode -->
+                <!-- Por causa do problema do acento no nome de Heloísa, a variável foi substituída pela constante -->
+                <talk>Prazer, heloísa</talk>
+                <talk>fiquei sabendo que você tem um grande problema em relação a timidez.</talk>
+                <talk>Preparei um jogo para você!</talk>
+                <talk id="volta">escolha um cartão</talk>
+                <mqtt id="divas_opcoes" topic="eva/video/play">divas-opcoes.png</mqtt>
+                <evaEmotion emotion="NEUTRAL" />
+                <qrRead var="cartao"/>
+                <switch var="cartao">
+                <!-- 1 - Dançar -->
+                    <case op="exact" value="1">
+                        <mqtt topic="eva/video/play">divas-capa.png</mqtt>
+                        <talk>vamos dançar comigo!</talk>
+                        <evaEmotion emotion="HAPPY" />
+                        <audio source="song-macarena-edit" block="FALSE" />
+                        <led animation="RAINBOW" />
+                        <motion head="2YES"/>
+                        <motion leftArm="SHAKE1"/>
+                        <motion rightArm="SHAKE2"/>
+                        <wait duration="5000" />
+                        <motion head="2YES"/>
+                        <motion leftArm="SHAKE1"/>
+                        <motion rightArm="SHAKE2"/>
+                        <wait duration="5000" />
+                        <led animation="RAINBOW" />
+                        <motion head="2YES"/>
+                        <motion leftArm="SHAKE1"/>
+                        <motion rightArm="SHAKE2"/>
+                        <wait duration="5000" />
+                        <motion head="2YES"/>
+                        <motion leftArm="SHAKE1"/>
+                        <motion rightArm="SHAKE2"/>
+                        <wait duration="5000" />
+                        <motion head="2YES"/>
+                        <motion leftArm="SHAKE1"/>
+                        <motion rightArm="SHAKE2"/>
+                        <wait duration="8000" />
+                        <led animation="RAINBOW" />
+                    </case>
+                    <!-- 2 - Cantar -->
+                    <case op="exact" value="2">
+                        <mqtt topic="eva/video/play">divas-capa.png</mqtt>
+                        <talk>Vamos cantar juntos?</talk>
+                        <light state="ON" color="PINK"/>
+                        <audio source="song-happy" block="FALSE" />
+                        <evaEmotion emotion="SURPRISE" />
+                        <wait duration="6000" />
+                        <light state="OFF" />
+                        <evaEmotion emotion="HAPPY" />
+                    </case>
+                    <!-- 3 - Piada -->
+                    <case op="exact" value="3">
+                        <mqtt topic="eva/video/play">divas-capa.png</mqtt>
+                        <talk>vou contar uma piada</talk>
+                        <talk> Por que a velhinha não usa relógio? </talk>
+                        <audio source="efx-tic-toc" block="TRUE" />
+                        <talk>Porque ela é sem hora.</talk>
+                        <evaEmotion emotion="HAPPY" />
+                        <motion head="2YES"/>
+                        <audio source="efx-trombone-triste" block="TRUE" />
+                    </case>
+                    <default>
+                        <useMacro macro="opcao_invalida" />
+                        <goto target="divas_opcoes" /> 
+                    </default>
+                </switch>
+                <!-- Esta parte foi adicionada na segunda versão. -->
+                <talk id="DIVAS_MAIS_UM_CARTAO">você deseja escolher mais um cartão?</talk>
+                <mqtt topic="eva/video/play">divas-opcoes2.png</mqtt>
+                <qrRead var="Resposta"/>
+                <switch var="Resposta">
+                <case op="contain" value="sim">
+                    <goto target="volta" />
+                </case>
+                <case op="exact" value="nao">
+                    <talk>tudo bem!</talk>
+                    <mqtt topic="eva/video/play">divas-capa.png</mqtt>
+                    <wait duration="2000" />
+                </case>
+                <default>
+                    <useMacro macro="opcao_invalida" />
+                    <mqtt topic="eva/video/play">divas-opcoes2.png</mqtt>
+                    <audio source="efx-display" block="TRUE" />
+                    <goto target="DIVAS_MAIS_UM_CARTAO" />
+                </default>
+                </switch>
+                <!-- A parte adicionada na segunda versão termina aqui. -->
+                <talk>Espero que eu tenha te ajudado, heloísa!</talk>
+                <talk>até a próxima!</talk>
+                <audio source="efx-aplausos-bom" block="FALSE" />
+                <led animation="RAINBOW" />
+                <wait duration="8000" />
+                <mqtt topic="eva/video/play">eva-sejam-bem-vindos.png</mqtt>
+                <goto target="opcoes_1a4" />
+            </case>
+            <case op="exact" value="nao">
+                <mqtt topic="eva/video/play">eva-sejam-bem-vindos.png</mqtt>
+                <wait duration="2000" />
+                <audio source="efx-display" block="TRUE" />
+                <goto target="opcoes_1a4" />
+            </case>
+            <default>
+                <evaEmotion emotion="NEUTRAL" />
+                <mqtt topic="eva/video/play">eva-capa.png</mqtt>
+                <wait duration="2000" />
+                <audio source="efx-display" block="TRUE" />
+                <goto target="opcoes_inicio" />
+            </default>
+        </switch>
+    </macro>
+
+
+    <!-- ################################################################################## -->
+    <!-- DEMO DO ROBÔ EVA ################################################################# -->
+    <!-- ################################################################################## -->
+    <macro id="opcao_demo_eva">
+        <!-- Setting the robô initial state -->
+        <mqtt topic="eva/video/play">eva-apresenta.png</mqtt>
+        <light state="OFF" />
+        <evaEmotion emotion="NEUTRAL" />
+        <led animation="STOP" />
+        <motion head="CENTER" rightArm="POSITION 0" leftArm="POSITION 0"/>
+        <talk>Olá pessoal!</talk>
+        <talk>Eu me chamo EVA.</talk>
+        <audio source="efx-blin2" block="TRUE" />
+        <talk>Sou um robô social</talk>
+        <wait duration="1500" />
+        <talk>Posso ser usado em aplicações em saúde e educação</talk>
+        <audio source="efx-blin2" block="TRUE" />
+        <talk>Agora, vou demonstrar algumas das minhas capacidades</talk>
+        <mqtt topic="eva/video/play">eva-fala.png</mqtt>
+        <talk>Apesar de estar falando em português, eu posso falar em outros idiomas</talk>
+        <wait duration="1500" />
+        <talk>Posso falar em inglês</talk>
+        <wait duration="1500" />
+        <talk tone="en-US_EmmaExpressive">Hello there, how are you doing?</talk>
+        <wait duration="1500" />
+        <talk>Também posso falar em espanhol</talk>
+        <wait duration="1500" />
+        <talk tone="es-ES_LauraV3Voice">¿Hola, cómo estás? ¡Hoy es un cielo muy hermoso!</talk>
+        <wait duration="1500" />
+        <mqtt topic="eva/video/play">eva-lampada.png</mqtt>
+        <talk>Posso ser usado em terapias que utilizam luzes coloridas para estímulo sensorial</talk>
+        <wait duration="1" />
+        <talk>Para isso, posso controlar essa lâmpada inteligente</talk>
+        <audio source="efx-display" block="FALSE" />
+        <light state="ON" color="WHITE"/>
+        <wait duration="1000" />
+        <audio source="efx-display" block="FALSE" />
+        <light state="ON" color="BLUE"/>
+        <wait duration="1000" />
+        <audio source="efx-display" block="FALSE" />
+        <light state="ON" color="GREEN"/>
+        <wait duration="1000" />
+        <audio source="efx-display" block="FALSE" />
+        <light state="ON" color="RED"/>
+        <wait duration="1000" />
+        <audio source="efx-display" block="FALSE" />
+        <light state="ON" color="YELLOW"/>
+        <wait duration="1000" />
+        <mqtt topic="eva/video/play">eva-exp.png</mqtt>
+        <talk>Posso expressar diversas emoções através das minhas expressões faciais</talk>
+        <wait duration="1" />
+        <talk>Posso expressar felicidade</talk>
+        <audio source="efx-blin2" block="FALSE" />
+        <evaEmotion emotion="HAPPY" />
+        <wait duration="2000" />
+        <talk>Tristeza</talk>
+        <audio source="efx-blin2" block="FALSE" />
+        <evaEmotion emotion="SAD" />
+        <wait duration="2000" />
+        <talk>Posso expressar raiva</talk>
+        <audio source="efx-blin2" block="FALSE" />
+        <evaEmotion emotion="ANGRY" />
+        <wait duration="2000" />
+        <talk>Ficar com medo</talk>
+        <audio source="efx-blin2" block="FALSE" />
+        <evaEmotion emotion="FEAR" />
+        <wait duration="2000" />
+        <talk>Posso até ficar surpreso</talk>
+        <audio source="efx-blin2" block="FALSE" />
+        <evaEmotion emotion="SURPRISE" />
+        <wait duration="2000" />
+        <talk>Se eu não gostar de algo, posso ficar com nôjo</talk>
+        <audio source="efx-blin2" block="FALSE" />
+        <evaEmotion emotion="DISGUST" />
+        <wait duration="2000" />
+        <talk>Se eu for tratado com carinho, posso até me apaixonar</talk>
+        <light state="ON" color="RED"/>
+        <audio source="song-apaixonadinha" block="FALSE" />
+        <led animation="ANGRY2" />
+        <evaEmotion emotion="INLOVE" />
+        <motion head="2UP"/>
+        <wait duration="4000" />
+        <motion head="CENTER"/>
+        <wait duration="3500" />
+        <light state="ON" color="WHITE"/>
+        <evaEmotion emotion="NEUTRAL" />
+        <mqtt topic="eva/video/play">eva-leds.png</mqtt>
+        <talk>Eu também posso demonstrar emoções de maneira não verbal, utilizando as cores e as animações dos léds no meu peito</talk>
+        <audio source="efx-robot" block="FALSE" />
+        <light state="ON" color="GREEN" />
+        <led animation="HAPPY" />
+        <wait duration="5000" />
+        <audio source="efx-robot" block="FALSE" />
+        <light state="ON" color="RED" />
+        <led animation="ANGRY" />
+        <wait duration="5000" />
+        <audio source="efx-robot" block="FALSE" />
+        <light state="ON" color="YELLOW" />
+        <led animation="SURPRISE" />
+        <wait duration="5000" />
+        <audio source="efx-robot" block="FALSE" />
+        <light state="ON" color="WHITE"/>
+        <led animation="RAINBOW" />
+        <wait duration="5000" />
+        <led animation="STOP" />
+        <talk>Posso me expressar através de movimentos e gestos, usando minha cabeça e meus braços</talk>
+        <wait duration="1000"/>
+        <mqtt topic="eva/video/play">eva-head.png</mqtt>
+        <talk>Posso mover minha cabeça pra cima</talk>
+        <audio source="efx-robot-head" block="FALSE" />
+        <motion type="2UP" />
+        <wait duration="2000" />
+        <motion type="CENTER" />
+        <wait duration="2000" />
+        <talk>Para baixo</talk>
+        <audio source="efx-robot-head" block="FALSE" />
+        <motion type="2DOWN" />
+        <wait duration="2000" />
+        <motion type="CENTER" />
+        <wait duration="2000" />
+        <talk>Eu posso dizer não</talk>
+        <audio source="song-mj-thriller2" block="FALSE" />
+        <light state="ON" color="RED"/>
+        <led animation="ANGRY" />
+        <evaEmotion emotion="ANGRY" />
+        <motion head="DOWN"/>
+        <wait duration="1000" />
+        <motion type="2NO" />
+        <wait duration="6000" />
+        <talk>Também posso dizer sim</talk>
+        <led animation="HAPPY" />
+        <light state="ON" color="GREEN"/>
+        <evaEmotion emotion="HAPPY" />
+        <motion type="2YES" />
+        <wait duration="4000" />
+        <evaEmotion emotion="NEUTRAL" />
+        <motion head="CENTER"/>
+        <light state="ON" color="WHITE"/>
+        <mqtt topic="eva/video/play">eva-arms.png</mqtt>
+        <talk>Posso mover meu braço direito</talk>
+        <audio source="efx-robot-arm" block="FALSE" />
+        <motion rightArm="POSITION 3"/>
+        <wait duration="2000" />
+        <talk>Também posso mover meu braço esquerdo</talk>
+        <audio source="efx-robot-arm" block="FALSE" />
+        <motion leftArm="POSITION 2"/>
+        <wait duration="2000" />
+        <talk>Posso dançar balançando os meus braços</talk>
+        <evaEmotion emotion="HAPPY" />
+        <motion head="UP"/>
+        <light state="ON" color="RED"/>
+        <audio source="song-macarena-edit-menor" block="FALSE" />
+        <led animation="RAINBOW" />
+        <motion leftArm="POSITION 0"/>
+        <motion rightArm="POSITION 0"/>
+        <wait duration="5000" />
+        <motion rightArm="POSITION 2"/>
+        <wait duration="2000" />
+        <motion leftArm="POSITION 2"/>
+        <wait duration="2000" />
+        <motion rightArm="POSITION 3"/>
+        <wait duration="2000" />
+        <motion rightArm="POSITION 3"/>
+        <wait duration="1000" />
+        <motion leftArm="SHAKE1"/>
+        <motion rightArm="SHAKE1"/>
+        <wait duration="2000" />
+        <light state="ON" color="WHITE"/>
+        <led animation="STOP" />
+        <evaEmotion emotion="NEUTRAL" />
+        <motion head="CENTER"/>
+        <motion leftArm="POSITION 0"/>
+        <motion rightArm="POSITION 0"/>
+        <!-- Sound play test -->
+        <mqtt topic="eva/video/play">eva-tocar.png</mqtt>
+        <talk>Posso tocar sons, como aqueles do Jogo do Mário</talk>
+        <audio source="efx-mario-game-intro" block="TRUE" />
+        <talk>E também posso tocar músicas legais</talk>
+        <audio source="song-happy-maior" block="FALSE" />
+        <light state="ON" color="RED"/>
+        <led animation="SURPRISE" />
+        <motion head="RIGHT_UP2" rightArm="POSITION 3" leftArm="POSITION 0"/>
+        <evaEmotion emotion="HAPPY" />
+        <wait duration="2000" />
+        <motion head="2YES"/>
+        <wait duration="5000" />
+        <motion head="LEFT_UP2" rightArm="POSITION 0" leftArm="POSITION 3"/>
+        <light state="ON" color="BLUE"/>
+        <wait duration="2000" />
+        <motion head="2YES"/>
+        <wait duration="5000" />
+        <motion head="CENTER" rightArm="POSITION 0" leftArm="POSITION 0"/>
+        <wait duration="2000" />
+        <led animation="STOP" />
+        <evaEmotion emotion="NEUTRAL" />
+        <motion head="CENTER"/>
+        <talk>Bem, a minha demonstração termina aqui</talk>
+        <wait duration="1000" />
+        <talk>espero que tenham gostado</talk>
+        <wait duration="1000" />
+        <talk>Até mais!</talk>
+        <audio source="song-mj-heal-the-world" block="FALSE" />
+        <evaEmotion emotion="HAPPY" />
+        <motion rightArm="POSITION 3"/>
+        <wait duration="1200" />
+        <motion head="UP"/>
+        <wait duration="1200" />
+        <motion head="2YES"/>
+        <wait duration="1000" />
+        <motion rightArm="SHAKE2"/>
+        <wait duration="5000" />
+        <motion head="2YES"/>
+        <wait duration="1000" />
+        <motion rightArm="SHAKE2"/>
+        <wait duration="4000" />
+        <motion rightArm="POSITION 0"/>
+        <motion leftArm="POSITION 0"/>
+        <motion head="CENTER"/>
+        <light state="OFF" />
+        <evaEmotion emotion="NEUTRAL" />
+    </macro>
+
+    <!-- DEMO DO FRED ####################################################### -->
+    <macro id="opcao_demo_fred">
+        <mqtt topic="eva/video/play">black-screen.png</mqtt>
+        <light state="OFF" />
+        <mqtt topic="FRED_6793534/expression">neutral</mqtt>
+        <mqtt topic="FRED_14194525/expression">neutral</mqtt>
+        <mqtt topic="FRED_6793534/pose">neutral</mqtt>
+        <mqtt topic="FRED_14194525/pose">neutral</mqtt>
+        <mqtt topic="FRED_6793534/leds">black</mqtt>
+        <mqtt topic="FRED_14194525/leds">black</mqtt>
+        <mqtt topic="FRED_6793534/expression">speech_off_1</mqtt>
+        <mqtt topic="FRED_14194525/expression">speech_off_1</mqtt>
+        <wait duration="2000" />
+
+        <!-- FRED OI #################################################################### -->
+        <mqtt topic="FRED_6793534/expression">happy</mqtt>
+        <wait duration="2000" />
+        <mqtt topic="eva/video/play">fred-oi.png</mqtt>
+        <mqtt topic="FRED_6793534/expression">speech_on_1</mqtt>
+        <audio source="hi_my_name_is_fred" block="TRUE" />
+        <mqtt topic="FRED_6793534/expression">speech_off_1</mqtt>
+        <wait duration="1000" />
+        <light state="ON" color="GREEN"/>
+        <mqtt topic="FRED_6793534/leds">green</mqtt>
+        <wait duration="1000" />
+        <mqtt topic="FRED_6793534/pose">left_foot1</mqtt>
+        <wait duration="2000" />
+        <mqtt topic="eva/video/play">fred-eu-sou.png</mqtt>
+        <mqtt topic="FRED_6793534/expression">speech_on_1</mqtt>
+        <audio source="i_am_a_friendly" block="TRUE" />
+        <mqtt topic="FRED_6793534/expression">speech_off_1</mqtt>
+        <wait duration="2000" />
+        <mqtt topic="FRED_6793534/expression">sad</mqtt>
+        <mqtt topic="FRED_6793534/leds">blue</mqtt>
+        <mqtt topic="FRED_6793534/pose">neutral</mqtt>
+        <wait duration="2000" />
+        <mqtt topic="eva/video/play">fred-triste.png</mqtt>
+        <mqtt topic="FRED_6793534/expression">speech_on_1</mqtt>
+        <audio source="I_am_feeling_so_sad" block="TRUE" />
+        <light state="ON" color="BLUE"/>
+        <mqtt topic="FRED_6793534/expression">speech_off_1</mqtt>
+        <wait duration="1500" />
+        <mqtt topic="eva/video/play">fred-sozinho.png</mqtt>
+        <mqtt topic="FRED_6793534/expression">speech_on_1</mqtt>
+        <audio source="cause_I_feel_so_alone" block="TRUE" />
+        <mqtt topic="FRED_6793534/expression">speech_off_1</mqtt>
+        <wait duration="300" />
+        <!-- <wait duration="1500" /> -->
+        <mqtt topic="FRED_6793534/pose">sad_foot_slow</mqtt>
+        <audio source="mus_chaves" block="TRUE" />
+        <light state="ON" color="PINK"/>
+        <mqtt topic="FRED_14194525/expression">happy</mqtt>
+        <mqtt topic="eva/video/play">frida-olá.png</mqtt>
+        <mqtt topic="FRED_14194525/expression">speech_on_1</mqtt>
+        <audio source="hello_fred" block="TRUE" />
+        <mqtt topic="FRED_14194525/expression">speech_off_1</mqtt>
+        <wait duration="1000" />
+        <mqtt topic="FRED_6793534/expression">surprised</mqtt>
+        <mqtt topic="FRED_6793534/pose">neutral</mqtt>
+        <mqtt topic="FRED_6793534/leds">rainbow</mqtt>
+        <mqtt topic="FRED_14194525/leds">pink</mqtt>
+        <mqtt topic="eva/video/play">heart-beating.mp4</mqtt>
+        <audio source="song-careless" block="TRUE" />
+
+        <mqtt topic="eva/video/play">fred-emoji.png</mqtt>
+        <mqtt topic="FRED_6793534/expression">in_love</mqtt>
+        <mqtt topic="FRED_14194525/expression">in_love</mqtt>
+        <mqtt topic="FRED_6793534/leds">red</mqtt>
+        <mqtt topic="FRED_14194525/leds">red</mqtt>
+        <mqtt topic="FRED_6793534/pose">sad_foot_slow</mqtt>
+        <mqtt topic="FRED_14194525/pose">sad_foot_slow</mqtt>
+        <light state="ON" color="RED"/>
+        <audio source="mus_you_are_so_beautiful" block="TRUE" />
+
+        <mqtt topic="FRED_6793534/expression">in_love</mqtt>
+        <mqtt topic="FRED_14194525/expression">in_love</mqtt>
+        <mqtt topic="FRED_6793534/pose">left_foot1</mqtt>
+        <mqtt topic="FRED_14194525/pose">tiptoe_foot</mqtt>
+        <mqtt topic="FRED_6793534/leds">rainbow</mqtt>
+        <mqtt topic="FRED_14194525/leds">rainbow</mqtt>
+        <wait duration="500" />
+        <mqtt topic="eva/video/play">fred-emoji-heart.png</mqtt>
+        <audio source="mus_is_this_love" block="TRUE" />
+
+        <light state="OFF" />
+        <mqtt topic="FRED_6793534/expression">neutral</mqtt>
+        <mqtt topic="FRED_14194525/expression">neutral</mqtt>
+        <mqtt topic="FRED_6793534/pose">neutral</mqtt>
+        <mqtt topic="FRED_14194525/pose">neutral</mqtt>
+        <mqtt topic="FRED_6793534/leds">black</mqtt>
+        <mqtt topic="FRED_14194525/leds">black</mqtt>
+        <wait duration="2000" />
+
+        <mqtt topic="eva/video/play">fred-vamos-dançar.png</mqtt>
+        <mqtt topic="FRED_6793534/expression">speech_on_1</mqtt>
+        <audio source="hey_lets_dance" block="TRUE" />
+        <mqtt topic="FRED_6793534/expression">speech_off_1</mqtt>
+        <wait duration="1000" />
+
+        <mqtt topic="FRED_6793534/expression">happy</mqtt>
+        <mqtt topic="FRED_14194525/expression">happy</mqtt>
+        <mqtt topic="FRED_6793534/leds">green</mqtt>
+        <mqtt topic="FRED_14194525/leds">green</mqtt>
+        <mqtt topic="eva/video/play">fred-video-time.mp4</mqtt>
+        <audio source="mus_the_time_of_my_life" block="FALSE" />
+        <light state="ON" color="GREEN"/>
+        <wait duration="1000" />
+        <mqtt topic="FRED_6793534/pose">left_foot1</mqtt>
+        <wait duration="2000" />
+        <mqtt topic="FRED_6793534/pose">right_foot1</mqtt>
+        <wait duration="2000" />
+        <mqtt topic="FRED_6793534/pose">left_foot1</mqtt>
+        <wait duration="2000" />
+        <mqtt topic="FRED_6793534/pose">right_foot1</mqtt>
+
+        <wait duration="2500" />
+        <light state="ON" color="PINK"/>
+        <mqtt topic="FRED_14194525/pose">left_foot1</mqtt>
+        <wait duration="2000" />
+        <mqtt topic="FRED_14194525/pose">right_foot1</mqtt>
+        <wait duration="2000" />
+        <mqtt topic="FRED_14194525/pose">left_foot1</mqtt>
+        <wait duration="2000" />
+        <mqtt topic="FRED_14194525/pose">right_foot1</mqtt>
+        <wait duration="3000" />
+        
+        <light state="ON" color="WHITE"/>
+        <mqtt topic="FRED_6793534/move">dance2_2</mqtt>
+        <mqtt topic="FRED_14194525/move">dance1_2</mqtt>
+        <wait duration="7000" />
+
+        <light state="ON" color="RED"/>
+        <mqtt topic="FRED_6793534/pose">left_foot1</mqtt>
+        <mqtt topic="FRED_14194525/pose">right_foot1</mqtt>
+        <wait duration="2000" />
+        <light state="ON" color="YELLOW"/>
+        <mqtt topic="FRED_6793534/pose">right_foot1</mqtt>
+        <mqtt topic="FRED_14194525/pose">left_foot1</mqtt>
+        <wait duration="2000" />
+
+        <light state="ON" color="RED"/>
+        <mqtt topic="FRED_6793534/move">moonwalk2</mqtt>
+        <mqtt topic="FRED_14194525/move">moonwalk2</mqtt>
+
+        <wait duration="11000" />
+
+        <mqtt topic="FRED_6793534/expression">neutral</mqtt>
+        <mqtt topic="FRED_14194525/expression">neutral</mqtt>
+        <mqtt topic="FRED_6793534/pose">neutral</mqtt>
+        <mqtt topic="FRED_14194525/pose">neutral</mqtt>
+        <mqtt topic="FRED_6793534/leds">black</mqtt>
+        <mqtt topic="FRED_14194525/leds">black</mqtt>
+        <light state="OFF" />
+    </macro>
+
+    <!-- OPÇÃO INVÁLIDA #################################################################### -->
+    <macro id="opcao_invalida">
+        <evaEmotion emotion="SAD" />
+        <mqtt topic="eva/video/play">opcao-invalida.png</mqtt>
+        <audio source="efx-blin" block="TRUE" />
+        <talk>Opção inválida!</talk>
+        <talk>Por favor, tente novamente!</talk>
+        <evaEmotion emotion="NEUTRAL" />
+    </macro>
+  </macros>
+</evaml>

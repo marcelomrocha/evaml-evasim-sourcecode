@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <evaml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="script" xsi:noNamespaceSchemaLocation="evaml-schema/evaml_schema.xsd">
   <settings>
     <voice tone="pt-BR_IsabelaV3Voice" />
@@ -5,8 +6,13 @@
   <script>
     <light state="ON" />
     <wait id="inicio" duration="2" />
-    <random min="1" max="3" />
-        <talk>$</talk>
-      <goto target="inicio" />
+    <useMacro macro="alo" />
+    <goto target="inicio" />
   </script>
-    </evaml>
+    <macros>
+      <macro id="ola">
+        <random min="1" max="3" />
+        <talk>$</talk>
+      </macro>
+    </macros>
+</evaml>

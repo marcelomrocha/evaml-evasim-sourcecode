@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<evaml
+  name="fred_frida_demo2026"
+  xsi:noNamespaceSchemaLocation="evaml-schema/evaml_schema.xsd"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <settings>
+    <voice tone="pt-BR_IsabelaV3Voice" />
+    <lightEffects mode="ON" />
+    <audioEffects mode="ON" />
+  </settings>
+  <script>
+    <mqtt topic="eva/video/play">fred-sejam-bem-vindos.png</mqtt>
+    <light state="OFF" />
+    <mqtt topic="FRED_6793534/expression">neutral</mqtt>
+    <mqtt topic="FRED_14194525/expression">neutral</mqtt>
+    <mqtt topic="FRED_6793534/pose">neutral</mqtt>
+    <mqtt topic="FRED_14194525/pose">neutral</mqtt>
+    <mqtt topic="FRED_6793534/leds">black</mqtt>
+    <mqtt topic="FRED_14194525/leds">black</mqtt>
+    <mqtt topic="FRED_6793534/expression">speech_off_1</mqtt>
+    <mqtt topic="FRED_14194525/expression">speech_off_1</mqtt>
+    <wait duration="2000" />
+
+    <!-- FRED OI #################################################################### -->
+    <mqtt topic="FRED_6793534/expression">happy</mqtt>
+    <wait duration="2000" />
+    <mqtt topic="eva/video/play">fred-oi.png</mqtt>
+    <mqtt topic="FRED_6793534/expression">speech_on_1</mqtt>
+    <audio source="hi_my_name_is_fred" block="TRUE" />
+    <mqtt topic="FRED_6793534/expression">speech_off_1</mqtt>
+    <wait duration="1000" />
+    <light state="ON" color="GREEN"/>
+    <mqtt topic="FRED_6793534/leds">green</mqtt>
+    <wait duration="1000" />
+    <mqtt topic="FRED_6793534/pose">left_foot1</mqtt>
+    <wait duration="2000" />
+    <mqtt topic="eva/video/play">fred-eu-sou.png</mqtt>
+    <mqtt topic="FRED_6793534/expression">speech_on_1</mqtt>
+    <audio source="i_am_a_friendly" block="TRUE" />
+    <mqtt topic="FRED_6793534/expression">speech_off_1</mqtt>
+    <wait duration="2000" />
+    <mqtt topic="FRED_6793534/expression">sad</mqtt>
+    <mqtt topic="FRED_6793534/leds">blue</mqtt>
+    <mqtt topic="FRED_6793534/pose">neutral</mqtt>
+    <wait duration="2000" />
+    <mqtt topic="eva/video/play">fred-triste.png</mqtt>
+    <mqtt topic="FRED_6793534/expression">speech_on_1</mqtt>
+    <audio source="I_am_feeling_so_sad" block="TRUE" />
+    <light state="ON" color="BLUE"/>
+    <mqtt topic="FRED_6793534/expression">speech_off_1</mqtt>
+    <wait duration="1500" />
+    <mqtt topic="eva/video/play">fred-sozinho.png</mqtt>
+    <mqtt topic="FRED_6793534/expression">speech_on_1</mqtt>
+    <audio source="cause_I_feel_so_alone" block="TRUE" />
+    <mqtt topic="FRED_6793534/expression">speech_off_1</mqtt>
+    <wait duration="300" />
+    <!-- <wait duration="1500" /> -->
+    <mqtt topic="FRED_6793534/pose">sad_foot_slow</mqtt>
+    <audio source="mus_chaves" block="TRUE" />
+    <light state="ON" color="PINK"/>
+    <mqtt topic="FRED_14194525/expression">happy</mqtt>
+    <mqtt topic="eva/video/play">frida-olá.png</mqtt>
+    <mqtt topic="FRED_14194525/expression">speech_on_1</mqtt>
+    <audio source="hello_fred" block="TRUE" />
+    <mqtt topic="FRED_14194525/expression">speech_off_1</mqtt>
+    <wait duration="1000" />
+    <mqtt topic="FRED_6793534/expression">surprised</mqtt>
+    <mqtt topic="FRED_6793534/pose">neutral</mqtt>
+    <mqtt topic="FRED_6793534/leds">rainbow</mqtt>
+    <mqtt topic="FRED_14194525/leds">pink</mqtt>
+    <audio source="song-careless" block="TRUE" />
+
+    <mqtt topic="eva/video/play">fred-emoji.png</mqtt>
+    <mqtt topic="FRED_6793534/expression">in_love</mqtt>
+    <mqtt topic="FRED_14194525/expression">in_love</mqtt>
+    <mqtt topic="FRED_6793534/leds">red</mqtt>
+    <mqtt topic="FRED_14194525/leds">red</mqtt>
+    <mqtt topic="FRED_6793534/pose">sad_foot_slow</mqtt>
+    <mqtt topic="FRED_14194525/pose">sad_foot_slow</mqtt>
+    <light state="ON" color="RED"/>
+    <audio source="mus_you_are_so_beautiful" block="TRUE" />
+
+    <mqtt topic="FRED_6793534/expression">in_love</mqtt>
+    <mqtt topic="FRED_14194525/expression">in_love</mqtt>
+    <mqtt topic="FRED_6793534/pose">left_foot1</mqtt>
+    <mqtt topic="FRED_14194525/pose">tiptoe_foot</mqtt>
+    <mqtt topic="FRED_6793534/leds">rainbow</mqtt>
+    <mqtt topic="FRED_14194525/leds">rainbow</mqtt>
+    <wait duration="500" />
+    <mqtt topic="eva/video/play">fred-emoji-heart.png</mqtt>
+    <audio source="mus_is_this_love" block="TRUE" />
+
+    <light state="OFF" />
+    <mqtt topic="FRED_6793534/expression">neutral</mqtt>
+    <mqtt topic="FRED_14194525/expression">neutral</mqtt>
+    <mqtt topic="FRED_6793534/pose">neutral</mqtt>
+    <mqtt topic="FRED_14194525/pose">neutral</mqtt>
+    <mqtt topic="FRED_6793534/leds">black</mqtt>
+    <mqtt topic="FRED_14194525/leds">black</mqtt>
+    <wait duration="2000" />
+
+    <mqtt topic="eva/video/play">fred-vamos-dançar.png</mqtt>
+    <mqtt topic="FRED_6793534/expression">speech_on_1</mqtt>
+    <audio source="hey_lets_dance" block="TRUE" />
+    <mqtt topic="FRED_6793534/expression">speech_off_1</mqtt>
+    <wait duration="1000" />
+
+    <mqtt topic="FRED_6793534/expression">happy</mqtt>
+    <mqtt topic="FRED_14194525/expression">happy</mqtt>
+    <mqtt topic="FRED_6793534/leds">green</mqtt>
+    <mqtt topic="FRED_14194525/leds">green</mqtt>
+    <mqtt topic="eva/video/play">fred-video-time.mp4</mqtt>
+    <audio source="mus_the_time_of_my_life" block="FALSE" />
+    <light state="ON" color="GREEN"/>
+    <wait duration="1000" />
+    <mqtt topic="FRED_6793534/pose">left_foot1</mqtt>
+    <wait duration="2000" />
+    <mqtt topic="FRED_6793534/pose">right_foot1</mqtt>
+    <wait duration="2000" />
+    <mqtt topic="FRED_6793534/pose">left_foot1</mqtt>
+    <wait duration="2000" />
+    <mqtt topic="FRED_6793534/pose">right_foot1</mqtt>
+
+    <wait duration="2500" />
+    <light state="ON" color="PINK"/>
+    <mqtt topic="FRED_14194525/pose">left_foot1</mqtt>
+    <wait duration="2000" />
+    <mqtt topic="FRED_14194525/pose">right_foot1</mqtt>
+    <wait duration="2000" />
+    <mqtt topic="FRED_14194525/pose">left_foot1</mqtt>
+    <wait duration="2000" />
+    <mqtt topic="FRED_14194525/pose">right_foot1</mqtt>
+    <wait duration="3000" />
+    
+    <light state="ON" color="WHITE"/>
+    <mqtt topic="FRED_6793534/move">dance2_2</mqtt>
+    <mqtt topic="FRED_14194525/move">dance1_2</mqtt>
+    <wait duration="7000" />
+
+    <light state="ON" color="RED"/>
+    <mqtt topic="FRED_6793534/pose">left_foot1</mqtt>
+    <mqtt topic="FRED_14194525/pose">right_foot1</mqtt>
+    <wait duration="2000" />
+    <light state="ON" color="YELLOW"/>
+    <mqtt topic="FRED_6793534/pose">right_foot1</mqtt>
+    <mqtt topic="FRED_14194525/pose">left_foot1</mqtt>
+    <wait duration="2000" />
+
+    <light state="ON" color="RED"/>
+    <mqtt topic="FRED_6793534/move">moonwalk2</mqtt>
+    <mqtt topic="FRED_14194525/move">moonwalk2</mqtt>
+
+    <wait duration="11000" />
+
+    <mqtt topic="FRED_6793534/expression">neutral</mqtt>
+    <mqtt topic="FRED_14194525/expression">neutral</mqtt>
+    <mqtt topic="FRED_6793534/pose">neutral</mqtt>
+    <mqtt topic="FRED_14194525/pose">neutral</mqtt>
+    <mqtt topic="FRED_6793534/leds">black</mqtt>
+    <mqtt topic="FRED_14194525/leds">black</mqtt>
+    <light state="OFF" />
+        
+  </script>
+</evaml>
